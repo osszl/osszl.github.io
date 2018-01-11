@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Vue程序刷新时的状态恢复</title>
+
+  
+  
+
+
+
+
+
+  
+  <meta name="author" content="居闲" />
+  <meta name="description" content="&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;因为OsChina的一篇介绍 Element UI 的文章，跟到官网看了下提供的组件合文档，便起了蹭了一回Vue的热度。接着看了一天Vue中文文档便铁定了心。
+&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;呼哧呼哧地花了3天时间，搭了个单页程序的工程架子，完成了登录，权限校验和个人信息等功能的开发做为demo后，便交给团队其它伙伴们了。
+
+" />
+
+  
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@gohugoio" />
+    <meta name="twitter:title" content="Vue程序刷新时的状态恢复" />
+    <meta name="twitter:description" content="&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;因为OsChina的一篇介绍 Element UI 的文章，跟到官网看了下提供的组件合文档，便起了蹭了一回Vue的热度。接着看了一天Vue中文文档便铁定了心。
+&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;呼哧呼哧地花了3天时间，搭了个单页程序的工程架子，完成了登录，权限校验和个人信息等功能的开发做为demo后，便交给团队其它伙伴们了。
+
+" />
+    <meta name="twitter:image" content="http://www.szlx.me/img/avatar.jpg" />
+  
+
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Vue程序刷新时的状态恢复" />
+  <meta property="og:description" content="&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;因为OsChina的一篇介绍 Element UI 的文章，跟到官网看了下提供的组件合文档，便起了蹭了一回Vue的热度。接着看了一天Vue中文文档便铁定了心。
+&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;呼哧呼哧地花了3天时间，搭了个单页程序的工程架子，完成了登录，权限校验和个人信息等功能的开发做为demo后，便交给团队其它伙伴们了。
+
+" />
+  <meta property="og:url" content="http://www.szlx.me/post/vue%E7%A8%8B%E5%BA%8F%E5%88%B7%E6%96%B0%E6%97%B6%E7%9A%84%E7%8A%B6%E6%80%81%E6%81%A2%E5%A4%8D/" />
+  <meta property="og:image" content="http://www.szlx.me/img/avatar.jpg" />
+
+
+
+
+<meta name="generator" content="Hugo 0.32.1" />
+
+
+<link rel="canonical" href="http://www.szlx.me/post/vue%E7%A8%8B%E5%BA%8F%E5%88%B7%E6%96%B0%E6%97%B6%E7%9A%84%E7%8A%B6%E6%80%81%E6%81%A2%E5%A4%8D/" />
+<link rel="alternative" href="http://www.szlx.me/index.xml" title="居闲亭" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+
+
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="居闲亭" />
+<meta name="msapplication-tooltip" content="居闲亭" />
+<meta name='msapplication-navbutton-color' content="#5fbf5e" />
+<meta name="msapplication-TileColor" content="#5fbf5e" />
+<meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
+<link rel="icon" href="http://www.szlx.me/img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="http://www.szlx.me/img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="http://www.szlx.me/img/favicon-32x32.png" />
+<link rel="icon" sizes="192x192" href="http://www.szlx.me/img/touch-icon-android.png" />
+<link rel="apple-touch-icon" href="http://www.szlx.me/img/touch-icon-apple.png" />
+<link rel="mask-icon" href="http://www.szlx.me/img/safari-pinned-tab.svg" color="#5fbf5e" />
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
+
+<link rel="stylesheet" href="http://www.szlx.me/css/bundle.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+      
+        
+        <a title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="http://www.szlx.me/img/avatar.jpg" alt="Avatar">
+  
+  <h2 class="title">居闲亭</h2>
+  
+  <p class="subtitle">诗不都在远方</p>
+  <button class="menu-toggle" type="button">
+    <span class="icon icon-menu"></span>
+  </button>
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+            
+            
+            
+              is-active
+            ">
+            <a href="http://www.szlx.me/">首页</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="https://gitee.com/lxrj/validation">作品</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="http://www.szlx.me/tags/">标签</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="http://www.szlx.me/links/">友链</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="http://www.szlx.me/about/">关于</a>
+          </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list">
+
+      
+      <li class="social-item">
+        <a href="mailto:lxrjszl@qq.com" title="Email"><span class="icon icon-email"></span></a>
+      </li>
+
+      
+      <li class="social-item">
+        <a href="//github.com/lxrjszl@qq.com" title="GitHub"><span class="icon icon-github"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="http://www.szlx.me/img/qrcode.jpg" title="Wechat"><span class="icon icon-wechat"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="http://www.szlx.me/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+      </li>
+
+    </ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Vue程序刷新时的状态恢复</h1>
+      <p class="post-meta">@居闲 · 2017-02-09 13:19 · 1 min read</p>
+    </header>
+    <article class="post-content"><p>&#160; &#160;&#160;&#160;&#160;&#160;因为<a href="http://www.oschina.net/">OsChina</a>的一篇介绍 Element UI 的文章，跟到官网看了下提供的组件合文档，便起了蹭了一回<a href="https://vuejs.org/">Vue</a>的热度。接着看了一天<a href="https://cn.vuejs.org/">Vue中文文档</a>便铁定了心。</p>
+
+<p>&#160; &#160;&#160;&#160;&#160;&#160;呼哧呼哧地花了3天时间，搭了个单页程序的工程架子，完成了登录，权限校验和个人信息等功能的开发做为demo后，便交给团队其它伙伴们了。</p>
+
+<p></p>
+
+<p>&#160; &#160;&#160;&#160;&#160;&#160;开发过程中，伙伴们碰到了很多的疑难，基本上都是知识结构欠缺以及不愿意阅读文档的原因，直到有人说不能按F5为止。</p>
+
+<p>&#160; &#160;&#160;&#160;&#160;&#160;收到反馈后，第一反应是还真有问题。因为搭建工程架子的过程中，出于习惯的做法，将系统公用基础数据，以及用户登录后鲜少变动的个人基础数据缓存在前端的单页程序里。这样做的理由是：</p>
+
+<blockquote>
+<ol>
+<li><strong>减少网络请求频次：</strong><br />
+将个人数据缓存，可免去不必要的ajax请求。如登录用户的基本信息和角色等。</li>
+<li><strong>更少网络数据传输：</strong><br />
+ajax请求时，原本需“代码名称”值对一起传输为只传输“代码”。<br /></li>
+<li><strong>后台编码逻辑简化</strong><br />
+后台服务业务处理免去提供名称的职责，省去了为了提供名称而产生的关联，或名称填充步骤。</li>
+</ol>
+</blockquote>
+
+<p>如果这些缓存的数据丢失，程序行为异常时必然的。而按F5浏览器刷将销毁现有页面，重建当前URL指待的页面。显然地，构建前端页面数据缓存只会在特殊的环节进行，而不能再每个页面中进行。否则@#￥%，实在说不下去，不说了。</p>
+
+<p>&#160; &#160;&#160;&#160;&#160;&#160;由于之前阅读文档 Vue Router 给了我极其深刻的印象，感觉其钩子能干这事情。于是开始撸代码，测试。嗯，前进，后退，日志打印出来了，逻辑符合预期，于是F5。啥？日志没了，程序悲催了？检查代码，貌似没低级错误，为啥不行呢？</p>
+
+<p>&#160; &#160;&#160;&#160;&#160;&#160;折腾过后，痛定思痛，继续看文档，对着<a href="https://cn.vuejs.org/v2/guide/instance.html">Vue实例生命周期图</a>发呆，继续发呆，最后觉定在页面的根组件的<code>beforeCreate</code>里试试运气。</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JavaScript" data-lang="JavaScript"><span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 1</span>    <span style="color:#a6e22e">beforeCreate</span> () {
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 2</span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">redirectTarget</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">target</span>) =&gt; {
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 3</span>      <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">fullPath</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$route</span>.<span style="color:#a6e22e">fullPath</span>
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 4</span>      <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fullPath</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#39;/home&#39;</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">target</span><span style="color:#e6db74">}</span><span style="color:#e6db74">?target=</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">fullPath</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">target</span>
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 5</span>    }
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 6</span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">prepare</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">isLogin</span>) =&gt; {
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 7</span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">isLogin</span>) {
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 8</span>        <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">shouldChangePassword</span>) {
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 9</span>          <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$router</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#a6e22e">redirectTarget</span>(<span style="color:#e6db74">&#39;/profile/password/enhancement&#39;</span>))
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">10</span>        } <span style="color:#66d9ef">else</span> {
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">11</span>          <span style="color:#a6e22e">refreshCache</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$store</span>)
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">12</span>        }
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">13</span>      } <span style="color:#66d9ef">else</span> {
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">14</span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$router</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#a6e22e">redirectTarget</span>(<span style="color:#e6db74">&#39;/login&#39;</span>))
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">15</span>      }
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">16</span>    }
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">17</span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">logined</span>) {
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">18</span>      <span style="color:#a6e22e">retrieveAccountInfo</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$store</span>).<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">isOk</span> =&gt; <span style="color:#a6e22e">prepare</span>(<span style="color:#a6e22e">isOk</span>)).<span style="color:#66d9ef">catch</span>(() =&gt; {
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">19</span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$router</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">`/login?target=</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$route</span>.<span style="color:#a6e22e">path</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>)
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">20</span>      })
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">21</span>    } <span style="color:#66d9ef">else</span> {
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">22</span>      <span style="color:#a6e22e">prepare</span>(<span style="color:#66d9ef">false</span>)
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">23</span>    }
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">24</span>  }</code></pre></div>
+
+<blockquote>
+<p>上面代码中包含了额外的“强制密码修改控制”，“访问控制登录控制”，这些特征与本文主题没直接关系。<code>retrieveAccountInfo</code>中有自动登录实现逻辑，自动登录失败后转显示登录。</p>
+</blockquote>
+
+<p>&#160; &#160;&#160;&#160;&#160;&#160;提心调单的F5，嗯，貌似可以，再F5，貌似还可以，继续F5……最后，F5对我就风轻云淡了。</p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="http://www.szlx.me/tags/javascript"><span class="tag">JavaScript</span></a></li>
+        
+          <li><a href="http://www.szlx.me/tags/vue"><span class="tag">Vue</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.This post was published <strong>336</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "disqus_shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  <footer class="site-footer">
+  <p>© 2017-2018 居闲亭</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank">Nuo</a>.</p>
+  
+</footer>
+
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+<script src="http://www.szlx.me/js/bundle.js"></script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-XXXXXXXX-X', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+  </body>
+</html>
