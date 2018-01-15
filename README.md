@@ -1,1 +1,1 @@
-# osszl.github.io
+这是我的[博客](http://www.szlx.me)源码，使用 [Hugo](https://gohugo.io/)以及主题[Nuo ](http://themes.gohugo.io/theme/hugo-nuo/post/hugo-nuo-post-preview/)制作。
