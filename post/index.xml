@@ -24,6 +24,19 @@
     </item>
     
     <item>
+      <title>一个简易的项目构建与部署脚本</title>
+      <link>http://www.szlx.me/post/simple-build-deploy-sh/</link>
+      <pubDate>Wed, 03 Jan 2018 17:32:52 +0800</pubDate>
+      
+      <guid>http://www.szlx.me/post/simple-build-deploy-sh/</guid>
+      <description>&lt;p&gt;在创始型的一个物流互联网平台团队里，有伙伴反复抱怨为了适用不同的环境构建、部署工程要多长多长的时间，而且一步小心就忘了啥，劳神费时！交接情况后，发现基本如此，并且一些当前高大上的一些做法也无法开展。&lt;/p&gt;
+
+&lt;p&gt;思前思后，觉得搞个脚本能解决些体力的事情。于是硬着头皮一遍凭着很久前对 shell 的一些记忆，一边百度，写了2个脚本。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Validation库使用指南</title>
       <link>http://www.szlx.me/post/validation%E5%BA%93%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</link>
       <pubDate>Wed, 09 Aug 2017 16:22:11 +0800</pubDate>
@@ -38,6 +51,32 @@
 &lt;li&gt;基本依赖只有slf4j-api,其他依赖根据使用方式可选：&lt;a href=&#34;https://github.com/lukehutch/fast-classpath-scanner&#34;&gt;fast-classpath-scanner&lt;/a&gt;，&lt;a href=&#34;https://bitbucket.org/asomov/snakeyaml&#34;&gt;snakeyaml&lt;/a&gt;，&lt;a href=&#34;https://github.com/lightbend/config&#34;&gt;config&lt;/a&gt;。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>为什么制作Validation检测库</title>
+      <link>http://www.szlx.me/post/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%B6%E4%BD%9Cvalidation%E6%A3%80%E6%B5%8B%E5%BA%93/</link>
+      <pubDate>Tue, 08 Aug 2017 16:08:22 +0800</pubDate>
+      
+      <guid>http://www.szlx.me/post/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%B6%E4%BD%9Cvalidation%E6%A3%80%E6%B5%8B%E5%BA%93/</guid>
+      <description>&lt;p&gt;&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&lt;a href=&#34;https://gitee.com/lxrj/validation/&#34;&gt;Validation工具库&lt;/a&gt;是我在团队沟通协调过程中设计的一个开源的Java工具类库。这是一个简单的库，它不助力程序员解决开发过程中的疑难杂症，也无益程序运行时的性能。那么为什么还要设计这个库工具库呢？答案是沟通与协作。&lt;/p&gt;
+
+&lt;p&gt;&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;一个软件研发团队，典型的成员和（或）涉众有：产品、设计、开发、测试、用户。通常产品和设计输入开发内容给开发，而开发则输出产品给测试和用户，在开发接收开发内容（输入）与交付产品（输出）之间，则是开发的加工过程，即开发活动。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>制作自己的Spring Boot Starter模块</title>
+      <link>http://www.szlx.me/post/%E5%88%B6%E4%BD%9C%E8%87%AA%E5%B7%B1%E7%9A%84springbootstarter%E6%A8%A1%E5%9D%97/</link>
+      <pubDate>Mon, 15 May 2017 16:16:46 +0800</pubDate>
+      
+      <guid>http://www.szlx.me/post/%E5%88%B6%E4%BD%9C%E8%87%AA%E5%B7%B1%E7%9A%84springbootstarter%E6%A8%A1%E5%9D%97/</guid>
+      <description>&lt;p&gt;&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;经过思考，放弃了自己搭建分布式文件系统的思路，决定采用第三方的文件服务器存储上传的图片。由于已经驻在阿里云上了，因此采用阿里的OSS。&lt;/p&gt;
+
+&lt;p&gt;&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;阿里的SDK实在是没有体现出他们的水平，感觉就是大和杂，依赖很多，同样的功能都要引入好几个不同的包来处理，什么fastjson，gson，json-lib让人眼花。项目组伙伴吐槽后撂挑子了，只得去救火。&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
     </item>

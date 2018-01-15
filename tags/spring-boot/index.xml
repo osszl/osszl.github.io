@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spring Boot on 居闲亭</title>
+    <link>http://www.szlx.me/tags/spring-boot/</link>
+    <description>Recent content in Spring Boot on 居闲亭</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
+    <lastBuildDate>Mon, 15 May 2017 16:16:46 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.szlx.me/tags/spring-boot/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>制作自己的Spring Boot Starter模块</title>
+      <link>http://www.szlx.me/post/%E5%88%B6%E4%BD%9C%E8%87%AA%E5%B7%B1%E7%9A%84springbootstarter%E6%A8%A1%E5%9D%97/</link>
+      <pubDate>Mon, 15 May 2017 16:16:46 +0800</pubDate>
+      
+      <guid>http://www.szlx.me/post/%E5%88%B6%E4%BD%9C%E8%87%AA%E5%B7%B1%E7%9A%84springbootstarter%E6%A8%A1%E5%9D%97/</guid>
+      <description>&lt;p&gt;&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;经过思考，放弃了自己搭建分布式文件系统的思路，决定采用第三方的文件服务器存储上传的图片。由于已经驻在阿里云上了，因此采用阿里的OSS。&lt;/p&gt;
+
+&lt;p&gt;&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;阿里的SDK实在是没有体现出他们的水平，感觉就是大和杂，依赖很多，同样的功能都要引入好几个不同的包来处理，什么fastjson，gson，json-lib让人眼花。项目组伙伴吐槽后撂挑子了，只得去救火。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

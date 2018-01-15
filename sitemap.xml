@@ -18,8 +18,23 @@
   </url>
   
   <url>
+    <loc>http://www.szlx.me/post/simple-build-deploy-sh/</loc>
+    <lastmod>2018-01-03T17:32:52+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.szlx.me/post/validation%E5%BA%93%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</loc>
     <lastmod>2017-08-09T16:22:11+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.szlx.me/post/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%B6%E4%BD%9Cvalidation%E6%A3%80%E6%B5%8B%E5%BA%93/</loc>
+    <lastmod>2017-08-08T16:08:22+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.szlx.me/post/%E5%88%B6%E4%BD%9C%E8%87%AA%E5%B7%B1%E7%9A%84springbootstarter%E6%A8%A1%E5%9D%97/</loc>
+    <lastmod>2017-05-15T16:16:46+08:00</lastmod>
   </url>
   
   <url>
@@ -69,7 +84,7 @@
   
   <url>
     <loc>http://www.szlx.me/tags/java/</loc>
-    <lastmod>2017-08-09T16:22:11+08:00</lastmod>
+    <lastmod>2018-01-03T17:32:52+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -86,8 +101,14 @@
   </url>
   
   <url>
+    <loc>http://www.szlx.me/tags/spring-boot/</loc>
+    <lastmod>2017-05-15T16:16:46+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://www.szlx.me/tags/</loc>
-    <lastmod>2017-08-09T16:22:11+08:00</lastmod>
+    <lastmod>2018-01-03T17:32:52+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -122,6 +143,12 @@
   </url>
   
   <url>
+    <loc>http://www.szlx.me/tags/%E6%A3%80%E6%B5%8B/</loc>
+    <lastmod>2017-08-08T16:08:22+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://www.szlx.me/tags/%E6%B2%89%E6%80%9D/</loc>
     <lastmod>2010-01-06T15:14:23+08:00</lastmod>
     <priority>0</priority>
@@ -135,7 +162,7 @@
   
   <url>
     <loc>http://www.szlx.me/categories/%E7%A0%94%E5%8F%91/</loc>
-    <lastmod>2017-08-09T16:22:11+08:00</lastmod>
+    <lastmod>2018-01-03T17:32:52+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -146,8 +173,20 @@
   </url>
   
   <url>
+    <loc>http://www.szlx.me/tags/%E8%84%9A%E6%9C%AC/</loc>
+    <lastmod>2018-01-03T17:32:52+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://www.szlx.me/tags/%E8%AE%BE%E8%AE%A1/</loc>
     <lastmod>2009-12-30T14:47:08+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.szlx.me/tags/%E9%83%A8%E7%BD%B2/</loc>
+    <lastmod>2018-01-03T17:32:52+08:00</lastmod>
     <priority>0</priority>
   </url>
   

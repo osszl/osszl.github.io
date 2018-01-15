@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
 
   
-  <title>过日子的智慧</title>
+  <title>为什么制作Validation检测库</title>
 
   
   
@@ -16,7 +16,8 @@
 
   
   <meta name="author" content="居闲" />
-  <meta name="description" content="&amp;#160; &amp;#160;&amp;#160; &amp;#160;这里要说的是一个小故事。这个故事是我几年前在南京做项目的时候听说的。故事的主人公是一位先生和其妻子。
+  <meta name="description" content="&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;Validation工具库是我在团队沟通协调过程中设计的一个开源的Java工具类库。这是一个简单的库，它不助力程序员解决开发过程中的疑难杂症，也无益程序运行时的性能。那么为什么还要设计这个库工具库呢？答案是沟通与协作。
+&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;一个软件研发团队，典型的成员和（或）涉众有：产品、设计、开发、测试、用户。通常产品和设计输入开发内容给开发，而开发则输出产品给测试和用户，在开发接收开发内容（输入）与交付产品（输出）之间，则是开发的加工过程，即开发活动。
 
 " />
 
@@ -24,8 +25,9 @@
   
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@gohugoio" />
-    <meta name="twitter:title" content="过日子的智慧" />
-    <meta name="twitter:description" content="&amp;#160; &amp;#160;&amp;#160; &amp;#160;这里要说的是一个小故事。这个故事是我几年前在南京做项目的时候听说的。故事的主人公是一位先生和其妻子。
+    <meta name="twitter:title" content="为什么制作Validation检测库" />
+    <meta name="twitter:description" content="&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;Validation工具库是我在团队沟通协调过程中设计的一个开源的Java工具类库。这是一个简单的库，它不助力程序员解决开发过程中的疑难杂症，也无益程序运行时的性能。那么为什么还要设计这个库工具库呢？答案是沟通与协作。
+&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;一个软件研发团队，典型的成员和（或）涉众有：产品、设计、开发、测试、用户。通常产品和设计输入开发内容给开发，而开发则输出产品给测试和用户，在开发接收开发内容（输入）与交付产品（输出）之间，则是开发的加工过程，即开发活动。
 
 " />
     <meta name="twitter:image" content="http://www.szlx.me/img/avatar.jpg" />
@@ -33,11 +35,12 @@
 
   
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="过日子的智慧" />
-  <meta property="og:description" content="&amp;#160; &amp;#160;&amp;#160; &amp;#160;这里要说的是一个小故事。这个故事是我几年前在南京做项目的时候听说的。故事的主人公是一位先生和其妻子。
+  <meta property="og:title" content="为什么制作Validation检测库" />
+  <meta property="og:description" content="&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;Validation工具库是我在团队沟通协调过程中设计的一个开源的Java工具类库。这是一个简单的库，它不助力程序员解决开发过程中的疑难杂症，也无益程序运行时的性能。那么为什么还要设计这个库工具库呢？答案是沟通与协作。
+&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;一个软件研发团队，典型的成员和（或）涉众有：产品、设计、开发、测试、用户。通常产品和设计输入开发内容给开发，而开发则输出产品给测试和用户，在开发接收开发内容（输入）与交付产品（输出）之间，则是开发的加工过程，即开发活动。
 
 " />
-  <meta property="og:url" content="http://www.szlx.me/post/%E8%BF%87%E6%97%A5%E5%AD%90%E7%9A%84%E6%99%BA%E6%85%A7/" />
+  <meta property="og:url" content="http://www.szlx.me/post/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%B6%E4%BD%9Cvalidation%E6%A3%80%E6%B5%8B%E5%BA%93/" />
   <meta property="og:image" content="http://www.szlx.me/img/avatar.jpg" />
 
 
@@ -46,7 +49,7 @@
 <meta name="generator" content="Hugo 0.32.1" />
 
 
-<link rel="canonical" href="http://www.szlx.me/post/%E8%BF%87%E6%97%A5%E5%AD%90%E7%9A%84%E6%99%BA%E6%85%A7/" />
+<link rel="canonical" href="http://www.szlx.me/post/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%B6%E4%BD%9Cvalidation%E6%A3%80%E6%B5%8B%E5%BA%93/" />
 <link rel="alternative" href="http://www.szlx.me/index.xml" title="居闲亭" type="application/atom+xml" />
 
 
@@ -236,38 +239,56 @@
 
   <section class="main post-detail">
     <header class="post-header">
-      <h1 class="post-title">过日子的智慧</h1>
-      <p class="post-meta">@居闲 · 2010-01-06 15:14 · 1 min read</p>
+      <h1 class="post-title">为什么制作Validation检测库</h1>
+      <p class="post-meta">@居闲 · 2017-08-08 16:08 · 1 min read</p>
     </header>
-    <article class="post-content"><p>&#160; &#160;&#160; &#160;这里要说的是一个小故事。这个故事是我几年前在南京做项目的时候听说的。故事的主人公是一位先生和其妻子。</p>
+    <article class="post-content"><p>&#160; &#160;&#160;&#160;&#160;&#160;<a href="https://gitee.com/lxrj/validation/">Validation工具库</a>是我在团队沟通协调过程中设计的一个开源的Java工具类库。这是一个简单的库，它不助力程序员解决开发过程中的疑难杂症，也无益程序运行时的性能。那么为什么还要设计这个库工具库呢？答案是沟通与协作。</p>
+
+<p>&#160; &#160;&#160;&#160;&#160;&#160;一个软件研发团队，典型的成员和（或）涉众有：产品、设计、开发、测试、用户。通常产品和设计输入开发内容给开发，而开发则输出产品给测试和用户，在开发接收开发内容（输入）与交付产品（输出）之间，则是开发的加工过程，即开发活动。</p>
 
 <p></p>
 
-<p>&#160; &#160;&#160; &#160;一次，妻子和先生为了生活的琐事发生了争吵。当争吵慢慢的变得越来越激烈后，2人都心生悔意，可是都不愿意在对方之前迈出后撤的步伐。</p>
+<p>&#160; &#160;&#160;&#160;&#160;&#160;如果将最终交付的产品看成是能协同工作完好并能符合要求的工件的集合，并且工件可以由更小的工件组成，那么开发最终的提交的就是大大小小的工件。在开发活动中，工件的要求总能描述为：在满足条件<code>Condition</code>时，将输入符合规格<code>Specification-Input</code>加工成符合规格<code>Specification-Output</code>的输出。</p>
 
-<p>&#160; &#160;&#160; &#160;先生认为，妻子有点恃宠而骄，决心趁着这个机会让她警醒警醒；妻子觉得先生就应该如往常一样有绅士风度，这样的事情应该让着她点。</p>
+<p>&#160; &#160;&#160;&#160;&#160;&#160;显然，从上可以看出，开发工件多达有1个条件，2个规格共计3个地方需要检测。在产品特性或设计层面，一般还要求检测不通过时做出额外的特殊行为，譬如打印日志，提示出错等等。<a href="https://gitee.com/lxrj/rule/">Rule工具库</a>的目的就是提醒产品、开发和测试在开发的过程中重视这个环节，并且期望他们在这个环节的工作中能够轻松愉快。</p>
 
-<p>&#160; &#160;&#160; &#160;于是开始赌气。妻子根据对先生的了解，冷战可能持续3天到一个星期。半天过去后，妻子觉得应该体面的，速战速决的结束这场战争，因为依靠持久战取得的胜利对这期间的煎熬起不了任何的补偿作用。显然的，试过的辩论方式是行不通的，何况有些理由可能只有她先生才会认同的。</p>
+<p>&#160; &#160;&#160;&#160;&#160;&#160;什么样的工作体验能让我们轻松愉快呢？我认为主要是：</p>
 
-<p>&#160; &#160;&#160; &#160;通过思考，妻子她住进了火车站附近的新世纪酒店，看了几小时的电视，然后在那里打电话给她母亲，称她在酒店，身上忘记没有钱了，而先生的电话老打不通。于是，岳母尝试打电话给女婿打电话，让他送钱过去。</p>
+<blockquote>
+<ol>
+<li><strong>产品与设计：</strong><br />
+真好，这个疏忽可以悄悄的修订，声张的不要；</li>
+<li><strong>开发：</strong><br />
+哈哈，不变就是王道，简单就是愉快，不要来打扰我；</li>
+<li><strong>测试：</strong><br />
+怪兽！怪兽！！就在哪个地方！怎么描述，你想怎么描述就怎么描述。</li>
+</ol>
+</blockquote>
 
-<p>&#160; &#160;&#160; &#160;先生接到电话后，火急火急的敢到酒店，在还没来得伸手去推房门的时候，妻子就从里面拉开了房门，正咧着嘴，很生气的瞪着他。先生装作如释重负的嘘口气，然后一步跨过房门，一把搂过妻子，把她的头摁在胸前，抚摸着她的头发，轻轻的说“你真聪明，我好喜欢”，妻子转转眼珠，轻轻笑了一声，然后他们一起开心回家了。</p>
+<p>&#160; &#160;&#160;&#160;&#160;&#160;理想是丰满的，现实是骨干的！理想离现实总是有一段距离，但这不妨碍我们靠近。<a href="https://gitee.com/lxrj/validation/">Validation工具库</a>的目的就是在开发过程中的3个检测环节协助团队朝理想靠近。总的说来通过以下方式来达到目标：</p>
 
-<p>&#160; &#160;&#160; &#160;最后，妻子如愿的提前结束了战争，并且推着先生迈出了第一步；先生通过绝好的机会，再一次的展示了绅士的风度，表达了对妻子的爱,最后还一语双关的点出了妻子的狡黠和聪慧，并且表示欣赏。</p>
-
-<p>&#160; &#160;&#160; &#160;战争停止了，妻子没赢，老公也没有输。</p></article>
+<blockquote>
+<ol>
+<li><strong>检测点统一编码：</strong><br />
+每个检测点统一编码，通过编码确定检测点在系统中的唯一位置和含义。</li>
+<li><strong>编码信息可配置：</strong><br />
+每个编码的信息，可以配置，并且可以按优先级覆盖重复既有配置；越靠近用户的优先级越高。</li>
+<li><strong>统一编程方式</strong><br />
+显示明确的编码，无隐藏行为，无歧义行为。</li>
+</ol>
+</blockquote></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
         
-          <li><a href="http://www.szlx.me/tags/%E6%96%87%E5%8C%96"><span class="tag">文化</span></a></li>
+          <li><a href="http://www.szlx.me/tags/java"><span class="tag">Java</span></a></li>
         
-          <li><a href="http://www.szlx.me/tags/%E6%B2%89%E6%80%9D"><span class="tag">沉思</span></a></li>
+          <li><a href="http://www.szlx.me/tags/%E6%A3%80%E6%B5%8B"><span class="tag">检测</span></a></li>
         
       </ul>
       
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.This post was published <strong>2931</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.This post was published <strong>160</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     
