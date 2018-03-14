@@ -7,20 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Wed, 03 Jan 2018 17:32:52 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 13 Jun 2017 17:32:52 +0800</lastBuildDate>
     
 	<atom:link href="http://www.szlx.me/tags/%E9%83%A8%E7%BD%B2/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>一个简易的项目构建与部署脚本</title>
-      <link>http://www.szlx.me/post/simple-build-deploy-sh/</link>
-      <pubDate>Wed, 03 Jan 2018 17:32:52 +0800</pubDate>
+      <link>http://www.szlx.me/post/%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC/</link>
+      <pubDate>Tue, 13 Jun 2017 17:32:52 +0800</pubDate>
       
-      <guid>http://www.szlx.me/post/simple-build-deploy-sh/</guid>
-      <description>&lt;p&gt;在创始型的一个物流互联网平台团队里，有伙伴反复抱怨为了适用不同的环境构建、部署工程要多长多长的时间，而且一步小心就忘了啥，劳神费时！交接情况后，发现基本如此，并且一些当前高大上的一些做法也无法开展。&lt;/p&gt;
+      <guid>http://www.szlx.me/post/%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC/</guid>
+      <description>&lt;p&gt;&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;在创始型的一个物流互联网平台团队里，有伙伴反复抱怨为了适用不同的环境构建、部署工程要多长多长的时间，而且一步小心就忘了啥，劳神费时！交接情况后，发现基本如此，并且一些当前高大上的一些做法也无法开展。&lt;/p&gt;
 
-&lt;p&gt;思前思后，觉得搞个脚本能解决些体力的事情。于是硬着头皮一遍凭着很久前对 shell 的一些记忆，一边百度，写了2个脚本。&lt;/p&gt;
+&lt;p&gt;&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;思前思后，觉得搞个脚本能解决些体力的事情。于是硬着头皮一遍凭着很久前对 shell 的一些记忆，一边百度，写了2个脚本。&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
     </item>

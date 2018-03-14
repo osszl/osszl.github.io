@@ -7,15 +7,35 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Tue, 16 Jan 2018 11:38:17 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 17 Jan 2018 14:35:09 +0800</lastBuildDate>
     
 	<atom:link href="http://www.szlx.me/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>我看软件行业中年危机</title>
+      <link>http://www.szlx.me/post/%E6%88%91%E7%9C%8B%E8%BD%AF%E4%BB%B6%E8%A1%8C%E4%B8%9A%E4%B8%AD%E5%B9%B4%E5%8D%B1%E6%9C%BA/</link>
+      <pubDate>Wed, 17 Jan 2018 14:35:09 +0800</pubDate>
+      
+      <guid>http://www.szlx.me/post/%E6%88%91%E7%9C%8B%E8%BD%AF%E4%BB%B6%E8%A1%8C%E4%B8%9A%E4%B8%AD%E5%B9%B4%E5%8D%B1%E6%9C%BA/</guid>
+      <description>&lt;p&gt;&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;最近一年以来，软件开发行业中年危机的话题忽然放大。在企业眼里，中年人与新生代究竟存在了什么样的价值差异，而产生所谓的“中年危机”呢？&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>需求用例模板一例</title>
+      <link>http://www.szlx.me/post/%E9%9C%80%E6%B1%82%E7%94%A8%E4%BE%8B%E6%A8%A1%E6%9D%BF%E4%B8%80%E4%BE%8B/</link>
+      <pubDate>Tue, 16 Jan 2018 17:27:43 +0800</pubDate>
+      
+      <guid>http://www.szlx.me/post/%E9%9C%80%E6%B1%82%E7%94%A8%E4%BE%8B%E6%A8%A1%E6%9D%BF%E4%B8%80%E4%BE%8B/</guid>
+      <description>&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;最近一年以来，软件开发行业中年危机的话题忽然放大。在企业眼里，中年人与新生代究竟存在了什么样的价值差异，而产生所谓的“中年危机”呢？</description>
+    </item>
+    
+    <item>
       <title>星辰和大海</title>
       <link>http://www.szlx.me/post/%E6%98%9F%E8%BE%B0%E5%92%8C%E5%A4%A7%E6%B5%B7/</link>
-      <pubDate>Tue, 16 Jan 2018 11:38:17 +0800</pubDate>
+      <pubDate>Sat, 13 Jan 2018 11:38:17 +0800</pubDate>
       
       <guid>http://www.szlx.me/post/%E6%98%9F%E8%BE%B0%E5%92%8C%E5%A4%A7%E6%B5%B7/</guid>
       <description>&lt;p&gt;&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;互联网的时代,O2O，第三方支付，共享经济，人工智能&amp;hellip;&amp;hellip;宛若璀璨的星海，潮涌潮，浪叠浪，轰轰烈烈，波澜壮阔：有明月升起了，有星辰坠落了，有浪花泛起了，有尘埃消失了。&lt;/p&gt;
@@ -35,16 +55,24 @@
     </item>
     
     <item>
-      <title>一个简易的项目构建与部署脚本</title>
-      <link>http://www.szlx.me/post/simple-build-deploy-sh/</link>
-      <pubDate>Wed, 03 Jan 2018 17:32:52 +0800</pubDate>
+      <title>在Nginx内部自动处理3XX跳转</title>
+      <link>http://www.szlx.me/post/%E5%9C%A8nginx%E5%86%85%E9%83%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%863xx%E8%B7%B3%E8%BD%AC/</link>
+      <pubDate>Sun, 17 Dec 2017 15:23:07 +0800</pubDate>
       
-      <guid>http://www.szlx.me/post/simple-build-deploy-sh/</guid>
-      <description>&lt;p&gt;在创始型的一个物流互联网平台团队里，有伙伴反复抱怨为了适用不同的环境构建、部署工程要多长多长的时间，而且一步小心就忘了啥，劳神费时！交接情况后，发现基本如此，并且一些当前高大上的一些做法也无法开展。&lt;/p&gt;
-
-&lt;p&gt;思前思后，觉得搞个脚本能解决些体力的事情。于是硬着头皮一遍凭着很久前对 shell 的一些记忆，一边百度，写了2个脚本。&lt;/p&gt;
+      <guid>http://www.szlx.me/post/%E5%9C%A8nginx%E5%86%85%E9%83%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%863xx%E8%B7%B3%E8%BD%AC/</guid>
+      <description>&lt;p&gt;本文内容转载自&lt;a href=&#34;http://colobu.com/2017/06/29/How-to-follow-HTTP-redirects-inside-nginx/&#34;&gt;在Nginx内部自动处理3XX跳转&lt;/a&gt;。&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>极简需求用例模板</title>
+      <link>http://www.szlx.me/post/%E6%9E%81%E7%AE%80%E9%9C%80%E6%B1%82%E7%94%A8%E4%BE%8B%E6%A8%A1%E6%9D%BF/</link>
+      <pubDate>Sat, 18 Nov 2017 21:53:40 +0800</pubDate>
+      
+      <guid>http://www.szlx.me/post/%E6%9E%81%E7%AE%80%E9%9C%80%E6%B1%82%E7%94%A8%E4%BE%8B%E6%A8%A1%E6%9D%BF/</guid>
+      <description>&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;记得2004年春节，回家的火车票就如大家所知的那样一票难求，最后拿着在复旦读书的一个高中同学丢给我的学生票登上了回家的绿皮火车。火车上列车员查票时要看学生证，学生证当然拿不出来。由于那阵子正在看《Writing Effective Use Cases》，于是拿来做证明蒙混过了关。
+&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;由于英文实在蹩脚，《Writing Effective Use Cases》读了半年也没啥收获，并从此不再买英文书籍。后来读了《Aspect-Oriented Software Development》的中文版，总算是有些收获，并在实践中逐渐摸索出了一些道道。</description>
     </item>
     
     <item>
@@ -86,6 +114,19 @@
       
       <guid>http://www.szlx.me/post/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%AE%9E%E7%8E%B0%E7%9A%84vue%E6%9D%83%E9%99%90%E6%A0%A1%E9%AA%8C%E6%8F%92%E4%BB%B6/</guid>
       <description>&lt;p&gt;&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;阅读&lt;a href=&#34;https://cn.vuejs.org/&#34;&gt;Vue文档&lt;/a&gt;知道可以自定义插件和指令后便跃跃欲试，但一直没有尝试。最近项目进度压力不大，便尝试着使用Vue&lt;a href=&#34;https://gitee.com/lxrj/Vue-Auth/blob/master/Authorization.js&#34;&gt;自定义插件&lt;/a&gt;和指令将项目权限校验部分进行了重构。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>一个简易的项目构建与部署脚本</title>
+      <link>http://www.szlx.me/post/%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC/</link>
+      <pubDate>Tue, 13 Jun 2017 17:32:52 +0800</pubDate>
+      
+      <guid>http://www.szlx.me/post/%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC/</guid>
+      <description>&lt;p&gt;&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;在创始型的一个物流互联网平台团队里，有伙伴反复抱怨为了适用不同的环境构建、部署工程要多长多长的时间，而且一步小心就忘了啥，劳神费时！交接情况后，发现基本如此，并且一些当前高大上的一些做法也无法开展。&lt;/p&gt;
+
+&lt;p&gt;&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;思前思后，觉得搞个脚本能解决些体力的事情。于是硬着头皮一遍凭着很久前对 shell 的一些记忆，一边百度，写了2个脚本。&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
     </item>
