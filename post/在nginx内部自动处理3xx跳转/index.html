@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>在Nginx内部自动处理3XX跳转</title>
+
+  
+  
+
+
+
+
+
+  
+  <meta name="author" content="居闲" />
+  <meta name="description" content="本文内容转载自在Nginx内部自动处理3XX跳转。
+
+" />
+
+  
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@gohugoio" />
+    <meta name="twitter:title" content="在Nginx内部自动处理3XX跳转" />
+    <meta name="twitter:description" content="本文内容转载自在Nginx内部自动处理3XX跳转。
+
+" />
+    <meta name="twitter:image" content="http://www.szlx.me/img/avatar.jpg" />
+  
+
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="在Nginx内部自动处理3XX跳转" />
+  <meta property="og:description" content="本文内容转载自在Nginx内部自动处理3XX跳转。
+
+" />
+  <meta property="og:url" content="http://www.szlx.me/post/%E5%9C%A8nginx%E5%86%85%E9%83%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%863xx%E8%B7%B3%E8%BD%AC/" />
+  <meta property="og:image" content="http://www.szlx.me/img/avatar.jpg" />
+
+
+
+
+<meta name="generator" content="Hugo 0.32.1" />
+
+
+<link rel="canonical" href="http://www.szlx.me/post/%E5%9C%A8nginx%E5%86%85%E9%83%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%863xx%E8%B7%B3%E8%BD%AC/" />
+<link rel="alternative" href="http://www.szlx.me/index.xml" title="居闲亭" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+
+
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="居闲亭" />
+<meta name="msapplication-tooltip" content="居闲亭" />
+<meta name='msapplication-navbutton-color' content="#5fbf5e" />
+<meta name="msapplication-TileColor" content="#5fbf5e" />
+<meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
+<link rel="icon" href="http://www.szlx.me/img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="http://www.szlx.me/img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="http://www.szlx.me/img/favicon-32x32.png" />
+<link rel="icon" sizes="192x192" href="http://www.szlx.me/img/touch-icon-android.png" />
+<link rel="apple-touch-icon" href="http://www.szlx.me/img/touch-icon-apple.png" />
+<link rel="mask-icon" href="http://www.szlx.me/img/safari-pinned-tab.svg" color="#5fbf5e" />
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
+
+<link rel="stylesheet" href="http://www.szlx.me/css/bundle.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+      
+        
+        <a title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="http://www.szlx.me/img/avatar.jpg" alt="Avatar">
+  
+  <h2 class="title">居闲亭</h2>
+  
+  <p class="subtitle">诗不都在远方</p>
+  <button class="menu-toggle" type="button">
+    <span class="icon icon-menu"></span>
+  </button>
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+            
+            
+            
+              is-active
+            ">
+            <a href="http://www.szlx.me/">首页</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="https://gitee.com/lxrj/validation">作品</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="http://www.szlx.me/tags/">标签</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="http://www.szlx.me/links/">友链</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="http://www.szlx.me/about/">关于</a>
+          </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list">
+
+      
+      <li class="social-item">
+        <a href="mailto:lxrjszl@qq.com" title="Email"><span class="icon icon-email"></span></a>
+      </li>
+
+      
+      <li class="social-item">
+        <a href="//github.com/lxrjszl@qq.com" title="GitHub"><span class="icon icon-github"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="http://www.szlx.me/img/qrcode.jpg" title="Wechat"><span class="icon icon-wechat"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="http://www.szlx.me/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+      </li>
+
+    </ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">在Nginx内部自动处理3XX跳转</h1>
+      <p class="post-meta">@居闲 · 2017-12-17 15:23 · 1 min read</p>
+    </header>
+    <article class="post-content"><p>本文内容转载自<a href="http://colobu.com/2017/06/29/How-to-follow-HTTP-redirects-inside-nginx/">在Nginx内部自动处理3XX跳转</a>。</p>
+
+<p></p>
+
+<p>利用Nginx很容易的配置反向代理和负载均衡的服务, 比如下面的配置：
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Nginx" data-lang="Nginx"><span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 1</span>    <span style="color:#66d9ef">upstream</span> <span style="color:#e6db74">backends</span> {
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 2</span>          <span style="color:#f92672">server</span> 10.0.0.10:<span style="color:#ae81ff">8080</span>;
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 3</span>          <span style="color:#f92672">server</span> 10.0.0.11:<span style="color:#ae81ff">8080</span>;
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 4</span>          <span style="color:#f92672">server</span> 10.0.0.12:<span style="color:#ae81ff">8080</span>;
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 5</span>    }
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 6</span>    <span style="color:#66d9ef">server{</span> 
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 7</span>        <span style="color:#e6db74">listen</span> <span style="color:#ae81ff">8080</span>; 
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 8</span>        <span style="color:#66d9ef">location</span> <span style="color:#e6db74">/</span> { 
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 9</span>            <span style="color:#f92672">proxy_pass</span>         <span style="color:#e6db74">http://backends</span>; 
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">10</span>            <span style="color:#f92672">proxy_set_header</span>   <span style="color:#e6db74">Host</span>             $host; 
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">11</span>            <span style="color:#f92672">proxy_set_header</span>   <span style="color:#e6db74">X-Real-IP</span>        $remote_addr; 
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">12</span>            <span style="color:#f92672">proxy_set_header</span>   <span style="color:#e6db74">X-Forwarded-For</span>  $proxy_add_x_forwarded_for; 
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">13</span>        } 
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">14</span>    <span style="color:#66d9ef">}</span></code></pre></div></p>
+
+<p>它将客户端的请求转发给后台的三个服务器。 负载均衡的算法又多种， 比如轮询、least_conn、ip_hash、weight等算法，本文重点不介绍这方面的内容，而是下面的需求。</p>
+
+<p>后端服务器可能返回 3XX的redirect的response, Nginx会把这个请求直接返回给客户端。现在我们的需求是让Nginx自己处理这个跳转，而客户端无感知。</p>
+
+<p>经过查找，找到一种解决方案， 如 <a href="https://serverfault.com/questions/423265/how-to-follow-http-redirects-inside-nginx">serverfault</a>提到的，我们可以利用<code>error_page</code>指令将3xx转发给另外的location, 利用<code>$upstream_http_location</code>获得转发的地址：
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Nginx" data-lang="Nginx"><span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 1</span>    <span style="color:#66d9ef">upstream</span> <span style="color:#e6db74">backends</span> {
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 2</span>          <span style="color:#f92672">server</span> 10.0.0.10:<span style="color:#ae81ff">8080</span>;
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 3</span>          <span style="color:#f92672">server</span> 10.0.0.11:<span style="color:#ae81ff">8080</span>;
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 4</span>          <span style="color:#f92672">server</span> 10.0.0.12:<span style="color:#ae81ff">8080</span>;
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 5</span>    }
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 6</span>    <span style="color:#66d9ef">server{</span> 
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 7</span>        <span style="color:#e6db74">listen</span> <span style="color:#ae81ff">8080</span>; 
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 8</span>        <span style="color:#66d9ef">location</span> <span style="color:#e6db74">/</span> { 
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 9</span>            <span style="color:#f92672">proxy_pass</span>         <span style="color:#e6db74">http://backends</span>; 
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">10</span>            <span style="color:#f92672">proxy_set_header</span>   <span style="color:#e6db74">Host</span>             $host; 
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">11</span>            <span style="color:#f92672">proxy_set_header</span>   <span style="color:#e6db74">X-Real-IP</span>        $remote_addr; 
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">12</span>            <span style="color:#f92672">proxy_set_header</span>   <span style="color:#e6db74">X-Forwarded-For</span>  $proxy_add_x_forwarded_for; 
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">13</span>            <span style="color:#f92672">proxy_intercept_errors</span> <span style="color:#66d9ef">on</span>;
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">14</span>            <span style="color:#f92672">error_page</span> <span style="color:#ae81ff">301</span> <span style="color:#ae81ff">302</span> <span style="color:#ae81ff">307</span> = <span style="color:#e6db74">@handle_redirect</span>;
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">15</span>        } 
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">16</span>        <span style="color:#66d9ef">location</span> <span style="color:#e6db74">@handle_redirect</span> {
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">17</span>                <span style="color:#f92672">set</span> $saved_redirect_location <span style="color:#e6db74">&#39;</span>$upstream_http_location&#39;;
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">18</span>                <span style="color:#f92672">proxy_pass</span> $saved_redirect_location;
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">19</span>        }
+<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">20</span>    <span style="color:#66d9ef">}</span></code></pre></div>
+挺巧妙的一个解决方案。</p>
+
+<p>另一个解决方案是 <a href="https://stackoverflow.com/questions/20254456/intercepting-backend-301-302-redirects-proxy-pass-and-rewriting-to-another-loc">stackoverflow</a>提到的, 返回给客户端的时候， 利用<code>proxy_redirect</code>指令修改Location的头，让client端重定向到Nginx特定的地址，Nginx再将请求转发给后端服务器。 不过这个方案要求客户端支持重定向的能力。</p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="http://www.szlx.me/tags/nginx"><span class="tag">Nginx</span></a></li>
+        
+          <li><a href="http://www.szlx.me/tags/%E8%BD%AC%E8%BD%BD"><span class="tag">转载</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.This post was published <strong>107</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "disqus_shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  <footer class="site-footer">
+  <p>© 2017-2018 居闲亭</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank">Nuo</a>.</p>
+  
+</footer>
+
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+<script src="http://www.szlx.me/js/bundle.js"></script>
+
+
+
+
+  </body>
+</html>

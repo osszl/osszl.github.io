@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Scrum软件开发模型简介</title>
+
+  
+  
+
+
+
+
+
+  
+  <meta name="author" content="居闲" />
+  <meta name="description" content="&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;前一阵子接洽新的工作，被问及敏捷开发。由于最近几年已经鲜少钻研相关方法学论，所以当时临时发挥，凭着曾经对Scrum方法的映像回答了下。回到家里整理了下思路。
+
+" />
+
+  
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@gohugoio" />
+    <meta name="twitter:title" content="Scrum软件开发模型简介" />
+    <meta name="twitter:description" content="&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;前一阵子接洽新的工作，被问及敏捷开发。由于最近几年已经鲜少钻研相关方法学论，所以当时临时发挥，凭着曾经对Scrum方法的映像回答了下。回到家里整理了下思路。
+
+" />
+    <meta name="twitter:image" content="http://www.szlx.me/img/avatar.jpg" />
+  
+
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Scrum软件开发模型简介" />
+  <meta property="og:description" content="&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;前一阵子接洽新的工作，被问及敏捷开发。由于最近几年已经鲜少钻研相关方法学论，所以当时临时发挥，凭着曾经对Scrum方法的映像回答了下。回到家里整理了下思路。
+
+" />
+  <meta property="og:url" content="http://www.szlx.me/post/scrum%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B/" />
+  <meta property="og:image" content="http://www.szlx.me/img/avatar.jpg" />
+
+
+
+
+<meta name="generator" content="Hugo 0.32.1" />
+
+
+<link rel="canonical" href="http://www.szlx.me/post/scrum%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B/" />
+<link rel="alternative" href="http://www.szlx.me/index.xml" title="居闲亭" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+
+
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="居闲亭" />
+<meta name="msapplication-tooltip" content="居闲亭" />
+<meta name='msapplication-navbutton-color' content="#5fbf5e" />
+<meta name="msapplication-TileColor" content="#5fbf5e" />
+<meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
+<link rel="icon" href="http://www.szlx.me/img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="http://www.szlx.me/img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="http://www.szlx.me/img/favicon-32x32.png" />
+<link rel="icon" sizes="192x192" href="http://www.szlx.me/img/touch-icon-android.png" />
+<link rel="apple-touch-icon" href="http://www.szlx.me/img/touch-icon-apple.png" />
+<link rel="mask-icon" href="http://www.szlx.me/img/safari-pinned-tab.svg" color="#5fbf5e" />
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
+
+<link rel="stylesheet" href="http://www.szlx.me/css/bundle.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+      
+        
+        <a title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="http://www.szlx.me/img/avatar.jpg" alt="Avatar">
+  
+  <h2 class="title">居闲亭</h2>
+  
+  <p class="subtitle">诗不都在远方</p>
+  <button class="menu-toggle" type="button">
+    <span class="icon icon-menu"></span>
+  </button>
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+            
+            
+            
+              is-active
+            ">
+            <a href="http://www.szlx.me/">首页</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="https://gitee.com/lxrj/validation">作品</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="http://www.szlx.me/tags/">标签</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="http://www.szlx.me/links/">友链</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="http://www.szlx.me/about/">关于</a>
+          </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list">
+
+      
+      <li class="social-item">
+        <a href="mailto:lxrjszl@qq.com" title="Email"><span class="icon icon-email"></span></a>
+      </li>
+
+      
+      <li class="social-item">
+        <a href="//github.com/lxrjszl@qq.com" title="GitHub"><span class="icon icon-github"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="http://www.szlx.me/img/qrcode.jpg" title="Wechat"><span class="icon icon-wechat"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="http://www.szlx.me/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+      </li>
+
+    </ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Scrum软件开发模型简介</h1>
+      <p class="post-meta">@居闲 · 2018-03-29 15:01 · 1 min read</p>
+    </header>
+    <article class="post-content"><p>&#160; &#160;&#160;&#160;&#160;&#160;前一阵子接洽新的工作，被问及敏捷开发。由于最近几年已经鲜少钻研相关方法学论，所以当时临时发挥，凭着曾经对Scrum方法的映像回答了下。回到家里整理了下思路。</p>
+
+<p></p>
+
+<h2 id="scrum简介"><strong>Scrum简介</strong></h2>
+
+<p>&#160; &#160;&#160;&#160;&#160;&#160;Scrum 软件开发模型是敏捷开发的一种，它的基本假设是：</p>
+
+<p>&#160; &#160;&#160;&#160;&#160;&#160;开发软件就像开发新产品，无法一开始就能定义软件产品最终的规程，过程中需要研发、创意、尝试错误，所以没有一种固定的流程可以保证专案成功。Scrum将软件开发团队比拟成橄榄球队，有明确的最高目标，熟悉开发流程中所需具备的最佳典范与技术，具有高度自主权，紧密地沟通合作，以高度弹性解决各种挑战，确保每天、每个阶段都朝向目标有明确的推进。</p>
+
+<p>&#160; &#160;&#160;&#160;&#160;&#160;Scrum开发流程通常以30天(或者更短的一段时间)为一个阶段，由客户提供新产品的需求规格开始，开发团队与客户于每一个阶段开始时挑选该完成的规格部分，开发团队必须尽力于30天后交付成果，团队每天用15分钟开会检查每个成员的进度与计划，了解所遭遇的困难并设法排除。</p>
+
+<p>&#160; &#160;&#160;&#160;&#160;&#160;Scrum较传统开发模型的优点：Scrum模型的一个显著特点就是响应变化，它能够尽快地响应变化。下面的图片使用传统的软件开发模型(瀑布模型、螺旋模型或迭代模型)。随着系统因素（内部和外部因素）的复杂度增加，项目成功的可能性就迅速降低。</p>
+
+<h2 id="scrum术语"><strong>Scrum术语</strong></h2>
+
+<ol>
+<li><strong>backlog:</strong>
+&#160; &#160;可以预知的所有任务，包括功能性的和非功能性的所有任务。</li>
+
+<li><p><strong>sprint:</strong> &#160; &#160;一次跌代开发的时间周期，一般最多以30天为一个周期.在这段时间内，开发团队需要完成一个制定的backlog,并且最终成果是一个增量的，可以交付的产品。</p></li>
+
+<li><p><strong>sprintbacklog:</strong>
+&#160; &#160;一个sprint周期内所需要完成的任务。</p></li>
+
+<li><p><strong>scrumMaster:</strong>
+&#160; &#160;负责监督整个Scrum进程，修订计划的一个团队成员。</p></li>
+
+<li><p><strong>time-box:</strong>
+&#160; &#160;一个用于开会时间段。比如每个dailyscrummeeting的time-box为15分钟。</p></li>
+
+<li><p><strong>sprintplanningmeeting:</strong>
+&#160; &#160;在启动每个sprint前召开。一般为一天时间（8小时）。该会议需要制定的任务是：产品Owner和团队成员将backlog分解成小的功能模块,决定在即将进行的sprint里需要完成多少小功能模块，确定好这个ProductBacklog的任务优先级。另外，该会议还需详细地讨论如何能够按照需求完成这些小功能模块。制定的这些模块的工作量以小时计算。</p></li>
+
+<li><p><strong>DailyScrummeeting：</strong>
+&#160; &#160;开发团队成员召开，一般为15分钟。每个开发成员需要向ScrumMaster汇报三个项目：今天完成了什么？　是否遇到了障碍？　即将要做什么？通过该会议，团队成员可以相互了解项目进度。</p></li>
+
+<li><p><strong>Sprintreviewmeeting：</strong>
+&#160; &#160;在每个Sprint结束后，这个Team将这个Sprint的工作成果演示给ProductOwner和其他相关的人员。一般该会议为４小时。</p></li>
+
+<li><p><strong>Sprintretrospectivemeeting：</strong>
+&#160; &#160;对刚结束的Sprint进行总结。会议的参与人员为团队开发的内部人员。一般该会议为３小时。</p></li>
+</ol>
+
+<h2 id="scrum过程"><strong>Scrum过程</strong></h2>
+
+<ol>
+<li>将整个产品的backlog分解成SprintBacklog,这个SprintBacklog是按照目前的人力物力条件可以完成的。</li>
+<li>召开sprintplanningmeeting，划分，确定这个Sprint内需要完成的任务，标注任务的优先级并分配给每个成员。注意这里的任务是以小时计算的，并不是按人天计算。</li>
+<li>进入sprint开发周期，在这个周期内，每天需要召开DailyScrummeeting。</li>
+<li>整个sprint周期结束，召开Sprintreviewmeeting，将成果演示给ProductOwner.</li>
+<li>团队成员最后召开Sprintretrospectivemeeting，总结问题和经验。</li>
+<li>这样周而复始，按照同样的步骤进行下一次Sprint</li>
+</ol></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="http://www.szlx.me/tags/%E6%96%B9%E6%B3%95%E8%AE%BA"><span class="tag">方法论</span></a></li>
+        
+          <li><a href="http://www.szlx.me/tags/%E7%AE%A1%E7%90%86"><span class="tag">管理</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "disqus_shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  <footer class="site-footer">
+  <p>© 2017-2018 居闲亭</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank">Nuo</a>.</p>
+  
+</footer>
+
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+<script src="http://www.szlx.me/js/bundle.js"></script>
+
+
+
+
+  </body>
+</html>
