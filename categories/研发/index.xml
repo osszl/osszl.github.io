@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Sun, 17 Dec 2017 15:23:07 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 29 Mar 2018 15:01:12 +0800</lastBuildDate>
     
 	<atom:link href="http://www.szlx.me/categories/%E7%A0%94%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Scrum软件开发模型简介</title>
+      <link>http://www.szlx.me/post/scrum%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B/</link>
+      <pubDate>Thu, 29 Mar 2018 15:01:12 +0800</pubDate>
+      
+      <guid>http://www.szlx.me/post/scrum%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B/</guid>
+      <description>&lt;p&gt;&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;前一阵子接洽新的工作，被问及敏捷开发。由于最近几年已经鲜少钻研相关方法学论，所以当时临时发挥，凭着曾经对Scrum方法的映像回答了下。回到家里整理了下思路。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>在Nginx内部自动处理3XX跳转</title>
