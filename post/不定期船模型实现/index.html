@@ -40,11 +40,11 @@
 
 
 
-<meta name="generator" content="Hugo 0.32.1" />
+<meta name="generator" content="Hugo 0.44" />
 
 
 <link rel="canonical" href="http://www.szlx.me/post/%E4%B8%8D%E5%AE%9A%E6%9C%9F%E8%88%B9%E6%A8%A1%E5%9E%8B%E5%AE%9E%E7%8E%B0/" />
-<link rel="alternative" href="http://www.szlx.me/index.xml" title="居闲亭" type="application/atom+xml" />
+<link rel="alternative" href="http://www.szlx.me/index.xml" title="在路上" type="application/atom+xml" />
 
 
 <meta name="renderer" content="webkit" />
@@ -64,8 +64,8 @@
 
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="居闲亭" />
-<meta name="msapplication-tooltip" content="居闲亭" />
+<meta name="apple-mobile-web-app-title" content="在路上" />
+<meta name="msapplication-tooltip" content="在路上" />
 <meta name='msapplication-navbutton-color' content="#5fbf5e" />
 <meta name="msapplication-TileColor" content="#5fbf5e" />
 <meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
@@ -80,7 +80,7 @@
 
 <link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
 
-<link rel="stylesheet" href="http://www.szlx.me/css/bundle.css" />
+<link rel="stylesheet" href="http://www.szlx.me/css/bundle.ff02473a9a.css" />
 
 
   
@@ -117,9 +117,9 @@
   <header class="site-header">
   <img class="avatar" src="http://www.szlx.me/img/avatar.jpg" alt="Avatar">
   
-  <h2 class="title">居闲亭</h2>
+  <h2 class="title">在路上</h2>
   
-  <p class="subtitle">诗不都在远方</p>
+  <p class="subtitle">这里也有诗，但那里还有星辰与大海</p>
   <button class="menu-toggle" type="button">
     <span class="icon icon-menu"></span>
   </button>
@@ -234,7 +234,7 @@
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">不定期船模型实现</h1>
-      <p class="post-meta">@居闲 · 2009-12-30 14:47 · 1 min read</p>
+      <p class="post-meta">@居闲 · Dec 30, 2009 · 1 min read</p>
     </header>
     <article class="post-content"><h2 id="模型">模型</h2>
 
@@ -262,11 +262,11 @@
 
 <p>&#160; &#160;&#160; &#160;市场中的对象是可以识别的，而且通常是通过名字识别，称这些对象为命名对象：</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">1</span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">NamedObject</span> <span style="color:#f92672">{</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">2</span>            String <span style="color:#a6e22e">getName</span><span style="color:#f92672">();</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">3</span>            <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setName</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">);</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">4</span>        <span style="color:#f92672">}</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">5</span>    </code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">1</span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">NamedObject</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">2</span>            String <span style="color:#a6e22e">getName</span><span style="color:#f92672">();</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">3</span>            <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setName</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">4</span>        <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">5</span>    </code></pre></div>
 
 <p>&#160; &#160;&#160; &#160;有些对象是通过Identity或者Code之类的属性唯一识别。为了编程方便，称这个Identity和Code就是Name，因此这里的name是一个广义上的含义，表示可以唯一识别。</p>
 
@@ -274,19 +274,19 @@
 
 <li><p>市场对象和市场对象管理器</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">1</span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Managable</span><span style="color:#f92672">&lt;</span>T <span style="color:#66d9ef">extends</span> Managable<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;&gt;</span> <span style="color:#66d9ef">extends</span> NamedObject <span style="color:#f92672">{</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">2</span>        <span style="color:#66d9ef">public</span> ManagerOf<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">extends</span> MarketModel<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getManager</span><span style="color:#f92672">();</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">3</span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setManager</span><span style="color:#f92672">(</span>ManagerOf<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">extends</span> MarketModel<span style="color:#f92672">&gt;</span> manager<span style="color:#f92672">);</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">4</span>    <span style="color:#f92672">}</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">5</span>    </code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">1</span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Managable</span><span style="color:#f92672">&lt;</span>T <span style="color:#66d9ef">extends</span> Managable<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;&gt;</span> <span style="color:#66d9ef">extends</span> NamedObject <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">2</span>        <span style="color:#66d9ef">public</span> ManagerOf<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">extends</span> MarketModel<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getManager</span><span style="color:#f92672">();</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">3</span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setManager</span><span style="color:#f92672">(</span>ManagerOf<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">extends</span> MarketModel<span style="color:#f92672">&gt;</span> manager<span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">4</span>    <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">5</span>    </code></pre></div>
 
 <p>&#160; &#160;&#160; &#160;市场中的对象和对象管理器有着管理和被管理的关系，一个特定类型管理器管理着一个或多个这种类型的对象。因此市场对象和市场对象管理器有着以下的特征：</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">1</span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Managable</span><span style="color:#f92672">&lt;</span>T <span style="color:#66d9ef">extends</span> Managable<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;&gt;</span> <span style="color:#66d9ef">extends</span> NamedObject <span style="color:#f92672">{</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">2</span>        <span style="color:#66d9ef">public</span> ManagerOf<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">extends</span> MarketModel<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getManager</span><span style="color:#f92672">();</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">3</span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setManager</span><span style="color:#f92672">(</span>ManagerOf<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">extends</span> MarketModel<span style="color:#f92672">&gt;</span> manager<span style="color:#f92672">);</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">4</span>    <span style="color:#f92672">}</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">5</span>    </code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">1</span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Managable</span><span style="color:#f92672">&lt;</span>T <span style="color:#66d9ef">extends</span> Managable<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;&gt;</span> <span style="color:#66d9ef">extends</span> NamedObject <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">2</span>        <span style="color:#66d9ef">public</span> ManagerOf<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">extends</span> MarketModel<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getManager</span><span style="color:#f92672">();</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">3</span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setManager</span><span style="color:#f92672">(</span>ManagerOf<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">extends</span> MarketModel<span style="color:#f92672">&gt;</span> manager<span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">4</span>    <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">5</span>    </code></pre></div>
 
 <p>&#160; &#160;&#160; &#160;模块为所有的管理器提供了基本的必要支持：CommonMarketManagedObject和 MarketObjectManager，市场对象继承CommonMarketManagedObject，而市场对象管理器则继承MarketObjectManager即可。</p></li>
 
@@ -294,29 +294,29 @@
 
 <p>&#160; &#160;&#160; &#160;在市场的模型中，使用以系列的加权来观察和设置市场。当前使用的加权有维度有货种，航线和时间。其中时间的加权自变量是连续的，而货种和航线的加权自变量是离散的。在业务中，决定了加权维度货种和航线是正交的（平行的），而时间维度是嵌套的。在实际使用中，正交加权系和当成嵌套加权系处理，反之则不行。所以，在当前的市场模型下，</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 1</span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Weight</span><span style="color:#f92672">{</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 2</span>        String <span style="color:#a6e22e">getName</span><span style="color:#f92672">();</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 3</span>        WeightSeries <span style="color:#a6e22e">getWeightSeries</span><span style="color:#f92672">();</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 4</span>        <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">getValue</span><span style="color:#f92672">();</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 5</span>    <span style="color:#f92672">}</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 6</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 7</span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">WeightSeries</span> <span style="color:#f92672">{</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 8</span>        <span style="color:#75715e">// 加权系列的名称
-</span><span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 9</span><span style="color:#75715e"></span>        String <span style="color:#a6e22e">getName</span><span style="color:#f92672">();</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">10</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">11</span>        <span style="color:#75715e">// 加权系列的加权表
-</span><span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">12</span><span style="color:#75715e"></span>        List<span style="color:#f92672">&lt;</span>Weight<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getWeights</span><span style="color:#f92672">()</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">13</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">14</span>        <span style="color:#75715e">// 获取指定名称加权点的子加权系列，如果加权点不存在，返回null
-</span><span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">15</span><span style="color:#75715e"></span>        WeightSeries <span style="color:#a6e22e">getChildSeries</span><span style="color:#f92672">(</span>String weightName<span style="color:#f92672">);</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">16</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">17</span>        <span style="color:#75715e">// 求取指定加权所占的百分比，如果加权不存在，返回0.0%
-</span><span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">18</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">getPercent</span><span style="color:#f92672">(</span> String weightName<span style="color:#f92672">);</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">19</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">20</span>        <span style="color:#75715e">// 求取加权路径上的百分比；加权路径，排在前面的先加权；如果加权路径不正确，返回0.0%
-</span><span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">21</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">getPercent</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> weightNames<span style="color:#f92672">);</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">22</span>    <span style="color:#f92672">}</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">23</span>    </code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 1</span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Weight</span><span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 2</span>        String <span style="color:#a6e22e">getName</span><span style="color:#f92672">();</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 3</span>        WeightSeries <span style="color:#a6e22e">getWeightSeries</span><span style="color:#f92672">();</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 4</span>        <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">getValue</span><span style="color:#f92672">();</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 5</span>    <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 6</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 7</span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">WeightSeries</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 8</span>        <span style="color:#75715e">// 加权系列的名称
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 9</span><span style="color:#75715e"></span>        String <span style="color:#a6e22e">getName</span><span style="color:#f92672">();</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">10</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">11</span>        <span style="color:#75715e">// 加权系列的加权表
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">12</span><span style="color:#75715e"></span>        List<span style="color:#f92672">&lt;</span>Weight<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getWeights</span><span style="color:#f92672">()</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">13</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">14</span>        <span style="color:#75715e">// 获取指定名称加权点的子加权系列，如果加权点不存在，返回null
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">15</span><span style="color:#75715e"></span>        WeightSeries <span style="color:#a6e22e">getChildSeries</span><span style="color:#f92672">(</span>String weightName<span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">16</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">17</span>        <span style="color:#75715e">// 求取指定加权所占的百分比，如果加权不存在，返回0.0%
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">18</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">getPercent</span><span style="color:#f92672">(</span> String weightName<span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">19</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">20</span>        <span style="color:#75715e">// 求取加权路径上的百分比；加权路径，排在前面的先加权；如果加权路径不正确，返回0.0%
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">21</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">getPercent</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> weightNames<span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">22</span>    <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">23</span>    </code></pre></div>
 
 <p>&#160; &#160;&#160; &#160;加权系应该是货物种类   &gt;   航线   &gt;   时间，或者是 航线   &gt;   货物种类   &gt;   时间。</p></li>
 
@@ -341,7 +341,7 @@
       </ul>
       
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.This post was published <strong>3016</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.This post was published <strong>3126</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     
@@ -369,7 +369,7 @@
     
   </section>
   <footer class="site-footer">
-  <p>© 2017-2018 居闲亭</p>
+  <p>© 2017-2018 在路上</p>
   <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank">Nuo</a>.</p>
   
 </footer>
@@ -382,7 +382,7 @@
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [['$','$'], ['\\(','\\)']],
-      displayMath: [['$$','$$'], ['\[','\]']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
       processEscapes: true,
       processEnvironments: true,
       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
@@ -400,7 +400,20 @@
   });
 </script>
 
-<script src="http://www.szlx.me/js/bundle.js"></script>
+<script src="http://www.szlx.me/js/bundle.d1288006cf.js"></script>
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 

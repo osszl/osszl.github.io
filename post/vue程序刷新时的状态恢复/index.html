@@ -46,11 +46,11 @@
 
 
 
-<meta name="generator" content="Hugo 0.32.1" />
+<meta name="generator" content="Hugo 0.44" />
 
 
 <link rel="canonical" href="http://www.szlx.me/post/vue%E7%A8%8B%E5%BA%8F%E5%88%B7%E6%96%B0%E6%97%B6%E7%9A%84%E7%8A%B6%E6%80%81%E6%81%A2%E5%A4%8D/" />
-<link rel="alternative" href="http://www.szlx.me/index.xml" title="居闲亭" type="application/atom+xml" />
+<link rel="alternative" href="http://www.szlx.me/index.xml" title="在路上" type="application/atom+xml" />
 
 
 <meta name="renderer" content="webkit" />
@@ -70,8 +70,8 @@
 
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="居闲亭" />
-<meta name="msapplication-tooltip" content="居闲亭" />
+<meta name="apple-mobile-web-app-title" content="在路上" />
+<meta name="msapplication-tooltip" content="在路上" />
 <meta name='msapplication-navbutton-color' content="#5fbf5e" />
 <meta name="msapplication-TileColor" content="#5fbf5e" />
 <meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
@@ -86,7 +86,7 @@
 
 <link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
 
-<link rel="stylesheet" href="http://www.szlx.me/css/bundle.css" />
+<link rel="stylesheet" href="http://www.szlx.me/css/bundle.ff02473a9a.css" />
 
 
   
@@ -123,9 +123,9 @@
   <header class="site-header">
   <img class="avatar" src="http://www.szlx.me/img/avatar.jpg" alt="Avatar">
   
-  <h2 class="title">居闲亭</h2>
+  <h2 class="title">在路上</h2>
   
-  <p class="subtitle">诗不都在远方</p>
+  <p class="subtitle">这里也有诗，但那里还有星辰与大海</p>
   <button class="menu-toggle" type="button">
     <span class="icon icon-menu"></span>
   </button>
@@ -240,7 +240,7 @@
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">Vue程序刷新时的状态恢复</h1>
-      <p class="post-meta">@居闲 · 2017-02-09 13:19 · 1 min read</p>
+      <p class="post-meta">@居闲 · Feb 9, 2017 · 1 min read</p>
     </header>
     <article class="post-content"><p>&#160; &#160;&#160;&#160;&#160;&#160;因为<a href="http://www.oschina.net/">OSChina</a>的一篇介绍 Element UI 的文章，跟到官网看了下提供的组件合文档，便起了蹭了一回<a href="https://vuejs.org/">Vue</a>的热度。接着看了一天<a href="https://cn.vuejs.org/">Vue中文文档</a>便铁定了心。</p>
 
@@ -269,30 +269,31 @@ ajax请求时，原本需“代码名称”值对一起传输为只传输“代�
 
 <p>&#160; &#160;&#160;&#160;&#160;&#160;折腾过后，痛定思痛，继续看文档，对着<a href="https://cn.vuejs.org/v2/guide/instance.html">Vue实例生命周期图</a>发呆，继续发呆，最后觉定在页面的根组件的<code>beforeCreate</code>里试试运气。</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JavaScript" data-lang="JavaScript"><span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 1</span>    <span style="color:#a6e22e">beforeCreate</span> () {
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 2</span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">redirectTarget</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">target</span>) =&gt; {
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 3</span>      <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">fullPath</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$route</span>.<span style="color:#a6e22e">fullPath</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 4</span>      <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fullPath</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#39;/home&#39;</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">target</span><span style="color:#e6db74">}</span><span style="color:#e6db74">?target=</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">fullPath</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">target</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 5</span>    }
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 6</span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">prepare</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">isLogin</span>) =&gt; {
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 7</span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">isLogin</span>) {
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 8</span>        <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">shouldChangePassword</span>) {
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 9</span>          <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$router</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#a6e22e">redirectTarget</span>(<span style="color:#e6db74">&#39;/profile/password/enhancement&#39;</span>))
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">10</span>        } <span style="color:#66d9ef">else</span> {
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">11</span>          <span style="color:#a6e22e">refreshCache</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$store</span>)
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">12</span>        }
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">13</span>      } <span style="color:#66d9ef">else</span> {
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">14</span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$router</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#a6e22e">redirectTarget</span>(<span style="color:#e6db74">&#39;/login&#39;</span>))
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">15</span>      }
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">16</span>    }
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">17</span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">logined</span>) {
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">18</span>      <span style="color:#a6e22e">retrieveAccountInfo</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$store</span>).<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">isOk</span> =&gt; <span style="color:#a6e22e">prepare</span>(<span style="color:#a6e22e">isOk</span>)).<span style="color:#66d9ef">catch</span>(() =&gt; {
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">19</span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$router</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">`/login?target=</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$route</span>.<span style="color:#a6e22e">path</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>)
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">20</span>      })
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">21</span>    } <span style="color:#66d9ef">else</span> {
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">22</span>      <span style="color:#a6e22e">prepare</span>(<span style="color:#66d9ef">false</span>)
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">23</span>    }
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">24</span>  }</code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JavaScript" data-lang="JavaScript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 1</span>    <span style="color:#a6e22e">beforeCreate</span> () {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 2</span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">redirectTarget</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">target</span>) =&gt; {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 3</span>      <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">fullPath</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$route</span>.<span style="color:#a6e22e">fullPath</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 4</span>      <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fullPath</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#39;/home&#39;</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">target</span><span style="color:#e6db74">}</span><span style="color:#e6db74">?target=</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">fullPath</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">target</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 5</span>    }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 6</span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">prepare</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">isLogin</span>) =&gt; {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 7</span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">isLogin</span>) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 8</span>        <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">shouldChangePassword</span>) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 9</span>          <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$router</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#a6e22e">redirectTarget</span>(<span style="color:#e6db74">&#39;/profile/password/enhancement&#39;</span>))
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">10</span>        } <span style="color:#66d9ef">else</span> {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">11</span>          <span style="color:#a6e22e">refreshCache</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$store</span>)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">12</span>        }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">13</span>      } <span style="color:#66d9ef">else</span> {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">14</span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$router</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#a6e22e">redirectTarget</span>(<span style="color:#e6db74">&#39;/login&#39;</span>))
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">15</span>      }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">16</span>    }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">17</span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">logined</span>) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">18</span>      <span style="color:#a6e22e">retrieveAccountInfo</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$store</span>).<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">isOk</span> =&gt; <span style="color:#a6e22e">prepare</span>(<span style="color:#a6e22e">isOk</span>)).<span style="color:#66d9ef">catch</span>(() =&gt; {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">19</span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$router</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">`/login?target=</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$route</span>.<span style="color:#a6e22e">path</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">20</span>      })
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">21</span>    } <span style="color:#66d9ef">else</span> {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">22</span>      <span style="color:#a6e22e">prepare</span>(<span style="color:#66d9ef">false</span>)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">23</span>    }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">24</span>  }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">25</span></code></pre></div>
 
 <blockquote>
 <p>上面代码中包含了额外的“强制密码修改控制”，“访问控制登录控制”，这些特征与本文主题没直接关系。<code>retrieveAccountInfo</code>中有自动登录实现逻辑，自动登录失败后转显示登录。</p>
@@ -310,7 +311,7 @@ ajax请求时，原本需“代码名称”值对一起传输为只传输“代�
       </ul>
       
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.This post was published <strong>418</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.This post was published <strong>528</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     
@@ -338,7 +339,7 @@ ajax请求时，原本需“代码名称”值对一起传输为只传输“代�
     
   </section>
   <footer class="site-footer">
-  <p>© 2017-2018 居闲亭</p>
+  <p>© 2017-2018 在路上</p>
   <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank">Nuo</a>.</p>
   
 </footer>
@@ -351,7 +352,7 @@ ajax请求时，原本需“代码名称”值对一起传输为只传输“代�
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [['$','$'], ['\\(','\\)']],
-      displayMath: [['$$','$$'], ['\[','\]']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
       processEscapes: true,
       processEnvironments: true,
       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
@@ -369,7 +370,20 @@ ajax请求时，原本需“代码名称”值对一起传输为只传输“代�
   });
 </script>
 
-<script src="http://www.szlx.me/js/bundle.js"></script>
+<script src="http://www.szlx.me/js/bundle.d1288006cf.js"></script>
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 

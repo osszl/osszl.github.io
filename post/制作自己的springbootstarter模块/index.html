@@ -46,11 +46,11 @@
 
 
 
-<meta name="generator" content="Hugo 0.32.1" />
+<meta name="generator" content="Hugo 0.44" />
 
 
 <link rel="canonical" href="http://www.szlx.me/post/%E5%88%B6%E4%BD%9C%E8%87%AA%E5%B7%B1%E7%9A%84springbootstarter%E6%A8%A1%E5%9D%97/" />
-<link rel="alternative" href="http://www.szlx.me/index.xml" title="居闲亭" type="application/atom+xml" />
+<link rel="alternative" href="http://www.szlx.me/index.xml" title="在路上" type="application/atom+xml" />
 
 
 <meta name="renderer" content="webkit" />
@@ -70,8 +70,8 @@
 
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="居闲亭" />
-<meta name="msapplication-tooltip" content="居闲亭" />
+<meta name="apple-mobile-web-app-title" content="在路上" />
+<meta name="msapplication-tooltip" content="在路上" />
 <meta name='msapplication-navbutton-color' content="#5fbf5e" />
 <meta name="msapplication-TileColor" content="#5fbf5e" />
 <meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
@@ -86,7 +86,7 @@
 
 <link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
 
-<link rel="stylesheet" href="http://www.szlx.me/css/bundle.css" />
+<link rel="stylesheet" href="http://www.szlx.me/css/bundle.ff02473a9a.css" />
 
 
   
@@ -123,9 +123,9 @@
   <header class="site-header">
   <img class="avatar" src="http://www.szlx.me/img/avatar.jpg" alt="Avatar">
   
-  <h2 class="title">居闲亭</h2>
+  <h2 class="title">在路上</h2>
   
-  <p class="subtitle">诗不都在远方</p>
+  <p class="subtitle">这里也有诗，但那里还有星辰与大海</p>
   <button class="menu-toggle" type="button">
     <span class="icon icon-menu"></span>
   </button>
@@ -240,7 +240,7 @@
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">制作自己的Spring Boot Starter模块</h1>
-      <p class="post-meta">@居闲 · 2017-05-15 16:16 · 1 min read</p>
+      <p class="post-meta">@居闲 · May 15, 2017 · 1 min read</p>
     </header>
     <article class="post-content"><p>&#160; &#160;&#160;&#160;&#160;&#160;经过思考，放弃了自己搭建分布式文件系统的思路，决定采用第三方的文件服务器存储上传的图片。由于已经驻在阿里云上了，因此采用阿里的OSS。</p>
 
@@ -254,33 +254,33 @@
 <li><p><strong>定义配置Propeties类</strong></p>
 
 <p>Propeties类一般定义为<code>XXXProperties</code>,其中<code>XXX</code>为配置的主题，是个普通的Java Bean。唯一的差别是用<code>ConfigurationProperties</code>对类进行了标注。如：
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 1</span>    <span style="color:#a6e22e">@ConfigurationProperties</span><span style="color:#f92672">(</span>prefix <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ali.oss&#34;</span><span style="color:#f92672">)</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 2</span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OssUploadProperties</span> <span style="color:#f92672">{</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 3</span>        <span style="color:#66d9ef">private</span> String accessId<span style="color:#f92672">;</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 4</span>        <span style="color:#66d9ef">private</span> String accessKey<span style="color:#f92672">;</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 5</span>        <span style="color:#66d9ef">private</span> String endpoint<span style="color:#f92672">;</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 6</span>        <span style="color:#66d9ef">private</span> String bucket<span style="color:#f92672">;</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 7</span>        <span style="color:#66d9ef">private</span> Condition condition<span style="color:#f92672">;</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 8</span>        <span style="color:#66d9ef">private</span> PolicyServer policyServer<span style="color:#f92672">;</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 9</span>        <span style="color:#66d9ef">private</span> CallbackServer callbackServer<span style="color:#f92672">;</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">10</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">11</span>        <span style="color:#f92672">......</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">12</span>    <span style="color:#f92672">}</span></code></pre></div></p></li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 1</span>    <span style="color:#a6e22e">@ConfigurationProperties</span><span style="color:#f92672">(</span>prefix <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ali.oss&#34;</span><span style="color:#f92672">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 2</span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OssUploadProperties</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 3</span>        <span style="color:#66d9ef">private</span> String accessId<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 4</span>        <span style="color:#66d9ef">private</span> String accessKey<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 5</span>        <span style="color:#66d9ef">private</span> String endpoint<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 6</span>        <span style="color:#66d9ef">private</span> String bucket<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 7</span>        <span style="color:#66d9ef">private</span> Condition condition<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 8</span>        <span style="color:#66d9ef">private</span> PolicyServer policyServer<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 9</span>        <span style="color:#66d9ef">private</span> CallbackServer callbackServer<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">10</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">11</span>        <span style="color:#f92672">......</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">12</span>    <span style="color:#f92672">}</span></code></pre></div></p></li>
 
 <li><p><strong>定义Configuration类</strong></p>
 
 <p>Configuration是个Java Config配置类，需使用<code>EnableConfigurationProperties</code>引入上述Properties类，在构造函数中完成注入。
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 1</span>    <span style="color:#a6e22e">@Configuration</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 2</span>    <span style="color:#a6e22e">@EnableConfigurationProperties</span><span style="color:#f92672">({</span>OssUploadProperties<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">})</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 3</span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OSSConfiguration</span> <span style="color:#f92672">{</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 4</span>        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> OssUploadProperties properties<span style="color:#f92672">;</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 5</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 6</span>        <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">OSSConfiguration</span><span style="color:#f92672">(</span>OssUploadProperties properties<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 7</span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">properties</span> <span style="color:#f92672">=</span> properties<span style="color:#f92672">;</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 8</span>        <span style="color:#f92672">}</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 9</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">10</span>        <span style="color:#f92672">......</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">11</span>    <span style="color:#f92672">}</span></code></pre></div></p></li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 1</span>    <span style="color:#a6e22e">@Configuration</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 2</span>    <span style="color:#a6e22e">@EnableConfigurationProperties</span><span style="color:#f92672">({</span>OssUploadProperties<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">})</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 3</span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OSSConfiguration</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 4</span>        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> OssUploadProperties properties<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 5</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 6</span>        <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">OSSConfiguration</span><span style="color:#f92672">(</span>OssUploadProperties properties<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 7</span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">properties</span> <span style="color:#f92672">=</span> properties<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 8</span>        <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 9</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">10</span>        <span style="color:#f92672">......</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">11</span>    <span style="color:#f92672">}</span></code></pre></div></p></li>
 
 <li><p><strong>编辑META-IN/spring.factories文件</strong></p>
 
@@ -289,14 +289,14 @@
 </ol>
 
 <p>&#160; &#160;&#160;&#160;&#160;&#160;按照上述制作的Starter，有个缺陷就是，只要在Spring Boot环境中引入了，就会进行相关的初始化。如果要避免这点，可以先注释掉<code>META-IN/spring.factories</code>文件的相关内容，然后提供类似以下的标注类，并在需要启用的工程中用于标注主类即可。
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">1</span>    <span style="color:#a6e22e">@Target</span><span style="color:#f92672">(</span>ElementType<span style="color:#f92672">.</span><span style="color:#a6e22e">TYPE</span><span style="color:#f92672">)</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">2</span>    <span style="color:#a6e22e">@Retention</span><span style="color:#f92672">(</span>RetentionPolicy<span style="color:#f92672">.</span><span style="color:#a6e22e">RUNTIME</span><span style="color:#f92672">)</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">3</span>    <span style="color:#a6e22e">@Documented</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">4</span>    <span style="color:#a6e22e">@Inherited</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">5</span>    <span style="color:#a6e22e">@Import</span><span style="color:#f92672">(</span>OSSConfiguration<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">)</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">6</span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">@interface</span> EnableAliOSS <span style="color:#f92672">{</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">7</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">8</span>    <span style="color:#f92672">}</span></code></pre></div></p></article>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">1</span>    <span style="color:#a6e22e">@Target</span><span style="color:#f92672">(</span>ElementType<span style="color:#f92672">.</span><span style="color:#a6e22e">TYPE</span><span style="color:#f92672">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">2</span>    <span style="color:#a6e22e">@Retention</span><span style="color:#f92672">(</span>RetentionPolicy<span style="color:#f92672">.</span><span style="color:#a6e22e">RUNTIME</span><span style="color:#f92672">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">3</span>    <span style="color:#a6e22e">@Documented</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">4</span>    <span style="color:#a6e22e">@Inherited</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">5</span>    <span style="color:#a6e22e">@Import</span><span style="color:#f92672">(</span>OSSConfiguration<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">6</span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">@interface</span> EnableAliOSS <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">7</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">8</span>    <span style="color:#f92672">}</span></code></pre></div></p></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
@@ -308,7 +308,7 @@
       </ul>
       
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.This post was published <strong>323</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.This post was published <strong>433</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     
@@ -336,7 +336,7 @@
     
   </section>
   <footer class="site-footer">
-  <p>© 2017-2018 居闲亭</p>
+  <p>© 2017-2018 在路上</p>
   <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank">Nuo</a>.</p>
   
 </footer>
@@ -349,7 +349,7 @@
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [['$','$'], ['\\(','\\)']],
-      displayMath: [['$$','$$'], ['\[','\]']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
       processEscapes: true,
       processEnvironments: true,
       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
@@ -367,7 +367,20 @@
   });
 </script>
 
-<script src="http://www.szlx.me/js/bundle.js"></script>
+<script src="http://www.szlx.me/js/bundle.d1288006cf.js"></script>
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 

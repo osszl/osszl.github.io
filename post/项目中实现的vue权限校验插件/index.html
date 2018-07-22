@@ -43,11 +43,11 @@
 
 
 
-<meta name="generator" content="Hugo 0.32.1" />
+<meta name="generator" content="Hugo 0.44" />
 
 
 <link rel="canonical" href="http://www.szlx.me/post/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%AE%9E%E7%8E%B0%E7%9A%84vue%E6%9D%83%E9%99%90%E6%A0%A1%E9%AA%8C%E6%8F%92%E4%BB%B6/" />
-<link rel="alternative" href="http://www.szlx.me/index.xml" title="居闲亭" type="application/atom+xml" />
+<link rel="alternative" href="http://www.szlx.me/index.xml" title="在路上" type="application/atom+xml" />
 
 
 <meta name="renderer" content="webkit" />
@@ -67,8 +67,8 @@
 
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="居闲亭" />
-<meta name="msapplication-tooltip" content="居闲亭" />
+<meta name="apple-mobile-web-app-title" content="在路上" />
+<meta name="msapplication-tooltip" content="在路上" />
 <meta name='msapplication-navbutton-color' content="#5fbf5e" />
 <meta name="msapplication-TileColor" content="#5fbf5e" />
 <meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
@@ -83,7 +83,7 @@
 
 <link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
 
-<link rel="stylesheet" href="http://www.szlx.me/css/bundle.css" />
+<link rel="stylesheet" href="http://www.szlx.me/css/bundle.ff02473a9a.css" />
 
 
   
@@ -120,9 +120,9 @@
   <header class="site-header">
   <img class="avatar" src="http://www.szlx.me/img/avatar.jpg" alt="Avatar">
   
-  <h2 class="title">居闲亭</h2>
+  <h2 class="title">在路上</h2>
   
-  <p class="subtitle">诗不都在远方</p>
+  <p class="subtitle">这里也有诗，但那里还有星辰与大海</p>
   <button class="menu-toggle" type="button">
     <span class="icon icon-menu"></span>
   </button>
@@ -237,55 +237,57 @@
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">一个项目中实现的Vue权限校验插件</h1>
-      <p class="post-meta">@居闲 · 2017-07-10 16:40 · 1 min read</p>
+      <p class="post-meta">@居闲 · Jul 10, 2017 · 1 min read</p>
     </header>
     <article class="post-content"><p>&#160; &#160;&#160;&#160;&#160;&#160;阅读<a href="https://cn.vuejs.org/">Vue文档</a>知道可以自定义插件和指令后便跃跃欲试，但一直没有尝试。最近项目进度压力不大，便尝试着使用Vue<a href="https://gitee.com/lxrj/Vue-Auth/blob/master/Authorization.js">自定义插件</a>和指令将项目权限校验部分进行了重构。</p>
 
 <p></p>
 
 <p>&#160; &#160;&#160;&#160;&#160;&#160;首先是包装用户权限检测的功能。思路非常简单，就是在用户的权限数据中进行检测指定的角色或权限，检测到了则说明有权限，否则说明没有权限。用户的权限数据由<code>Role</code>和<code>Permission</code>数组组成，在权限机制初始化的时候提供，也可以提供返回它们的函数。初始化如下：
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Javascript" data-lang="Javascript"><span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 1</span><span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">Authorization</span>, {
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 2</span>  <span style="color:#a6e22e">authorization</span> (<span style="color:#a6e22e">context</span>) {
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 3</span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">roles</span> <span style="color:#f92672">=</span> []
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 4</span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">permissions</span> <span style="color:#f92672">=</span> []
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 5</span>    ......
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 6</span>    <span style="color:#66d9ef">return</span> {<span style="color:#a6e22e">roles</span>, <span style="color:#a6e22e">permissions</span>}
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 7</span>  },
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 8</span>  <span style="color:#a6e22e">options</span><span style="color:#f92672">:</span> {
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 9</span>    <span style="color:#a6e22e">context</span><span style="color:#f92672">:</span> ......
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">10</span>  }
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">11</span>})</code></pre></div></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Javascript" data-lang="Javascript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 1</span><span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">Authorization</span>, {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 2</span>  <span style="color:#a6e22e">authorization</span> (<span style="color:#a6e22e">context</span>) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 3</span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">roles</span> <span style="color:#f92672">=</span> []
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 4</span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">permissions</span> <span style="color:#f92672">=</span> []
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 5</span>    ......
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 6</span>    <span style="color:#66d9ef">return</span> {<span style="color:#a6e22e">roles</span>, <span style="color:#a6e22e">permissions</span>}
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 7</span>  },
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 8</span>  <span style="color:#a6e22e">options</span><span style="color:#f92672">:</span> {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 9</span>    <span style="color:#a6e22e">context</span><span style="color:#f92672">:</span> ......
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">10</span>  }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">11</span>})
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">12</span></code></pre></div></p>
 
 <p>&#160; &#160;&#160;&#160;&#160;&#160;其次是实现自定义的指令<code>auth</code>，使用后如果有权限则渲染后出指令所在的元素，否则忽略掉指令所在元素。
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Javascript" data-lang="Javascript"><span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 1</span>    <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">directive</span>(<span style="color:#e6db74">&#39;auth&#39;</span>, {
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 2</span>      <span style="color:#a6e22e">bind</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">el</span>, <span style="color:#a6e22e">binding</span>) {
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 3</span>        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">checkFunction</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_authorization</span>.<span style="color:#a6e22e">hasPermission</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 4</span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">binding</span>.<span style="color:#a6e22e">arg</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;role&#39;</span>) {
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 5</span>            <span style="color:#a6e22e">checkFunction</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_authorization</span>.<span style="color:#a6e22e">hasRole</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 6</span>        }
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 7</span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">binding</span>.<span style="color:#a6e22e">arg</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">binding</span>.<span style="color:#a6e22e">arg</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#39;&#39;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">binding</span>.<span style="color:#a6e22e">arg</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#39;permission&#39;</span>) {
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 8</span>          <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;指令参数错误&#39;</span>)
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 9</span>        }
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">10</span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">checkFunction</span>(<span style="color:#a6e22e">binding</span>.<span style="color:#a6e22e">value</span>)) {
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">11</span>          <span style="color:#a6e22e">el</span>.<span style="color:#a6e22e">parentNode</span>.<span style="color:#a6e22e">removeChild</span>(<span style="color:#a6e22e">el</span>)
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">12</span>        }
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">13</span>      }
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">14</span>    })</code></pre></div></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Javascript" data-lang="Javascript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 1</span>    <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">directive</span>(<span style="color:#e6db74">&#39;auth&#39;</span>, {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 2</span>      <span style="color:#a6e22e">bind</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">el</span>, <span style="color:#a6e22e">binding</span>) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 3</span>        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">checkFunction</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_authorization</span>.<span style="color:#a6e22e">hasPermission</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 4</span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">binding</span>.<span style="color:#a6e22e">arg</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;role&#39;</span>) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 5</span>            <span style="color:#a6e22e">checkFunction</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_authorization</span>.<span style="color:#a6e22e">hasRole</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 6</span>        }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 7</span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">binding</span>.<span style="color:#a6e22e">arg</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">binding</span>.<span style="color:#a6e22e">arg</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#39;&#39;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">binding</span>.<span style="color:#a6e22e">arg</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#39;permission&#39;</span>) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 8</span>          <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;指令参数错误&#39;</span>)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 9</span>        }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">10</span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">checkFunction</span>(<span style="color:#a6e22e">binding</span>.<span style="color:#a6e22e">value</span>)) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">11</span>          <span style="color:#a6e22e">el</span>.<span style="color:#a6e22e">parentNode</span>.<span style="color:#a6e22e">removeChild</span>(<span style="color:#a6e22e">el</span>)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">12</span>        }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">13</span>      }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">14</span>    })
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">15</span></code></pre></div></p>
 
 <p>&#160; &#160;&#160;&#160;&#160;&#160;使用方式如下：
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 1</span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">v-auth:role</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;aRole&#34;</span>&gt; 
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 2</span>        ......
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 3</span>    &lt;/<span style="color:#f92672">div</span>&gt;
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 4</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 5</span>    <span style="color:#75715e">&lt;!--或--&gt;</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 6</span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">v-auth:permission</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;aPermission&#34;</span>&gt; 
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 7</span>        ......
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 8</span>    &lt;/<span style="color:#f92672">div</span>&gt;
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;"> 9</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">10</span>    <span style="color:#75715e">&lt;!--或--&gt;</span>
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">11</span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">v-auth</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;aPermission&#34;</span>&gt; 
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">12</span>        ......
-<span style="color:#7c7c79;margin-right:0.4em;padding:00.4em00.4em;">13</span>    &lt;/<span style="color:#f92672">div</span>&gt;</code></pre></div></p></article>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 1</span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">v-auth:role</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;aRole&#34;</span>&gt; 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 2</span>        ......
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 3</span>    &lt;/<span style="color:#f92672">div</span>&gt;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 4</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 5</span>    <span style="color:#75715e">&lt;!--或--&gt;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 6</span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">v-auth:permission</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;aPermission&#34;</span>&gt; 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 7</span>        ......
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 8</span>    &lt;/<span style="color:#f92672">div</span>&gt;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 9</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">10</span>    <span style="color:#75715e">&lt;!--或--&gt;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">11</span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">v-auth</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;aPermission&#34;</span>&gt; 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">12</span>        ......
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">13</span>    &lt;/<span style="color:#f92672">div</span>&gt;</code></pre></div></p></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
@@ -299,7 +301,7 @@
       </ul>
       
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.This post was published <strong>267</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.This post was published <strong>377</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     
@@ -327,7 +329,7 @@
     
   </section>
   <footer class="site-footer">
-  <p>© 2017-2018 居闲亭</p>
+  <p>© 2017-2018 在路上</p>
   <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank">Nuo</a>.</p>
   
 </footer>
@@ -340,7 +342,7 @@
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [['$','$'], ['\\(','\\)']],
-      displayMath: [['$$','$$'], ['\[','\]']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
       processEscapes: true,
       processEnvironments: true,
       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
@@ -358,7 +360,20 @@
   });
 </script>
 
-<script src="http://www.szlx.me/js/bundle.js"></script>
+<script src="http://www.szlx.me/js/bundle.d1288006cf.js"></script>
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 

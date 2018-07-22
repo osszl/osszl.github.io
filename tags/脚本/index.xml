@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>脚本 on 在路上</title>
+    <link>http://www.szlx.me/tags/%E8%84%9A%E6%9C%AC/</link>
+    <description>Recent content in 脚本 on 在路上</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
+    <lastBuildDate>Wed, 03 Jan 2018 17:32:52 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.szlx.me/tags/%E8%84%9A%E6%9C%AC/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>一个简易的项目构建与部署脚本</title>
+      <link>http://www.szlx.me/post/simple-build-deploy-sh/</link>
+      <pubDate>Wed, 03 Jan 2018 17:32:52 +0800</pubDate>
+      
+      <guid>http://www.szlx.me/post/simple-build-deploy-sh/</guid>
+      <description>&lt;p&gt;在创始型的一个物流互联网平台团队里，有伙伴反复抱怨为了适用不同的环境构建、部署工程要多长多长的时间，而且一步小心就忘了啥，劳神费时！交接情况后，发现基本如此，并且一些当前高大上的一些做法也无法开展。&lt;/p&gt;
+
+&lt;p&gt;思前思后，觉得搞个脚本能解决些体力的事情。于是硬着头皮一遍凭着很久前对 shell 的一些记忆，一边百度，写了2个脚本。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
