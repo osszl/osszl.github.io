@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>安全 on 在路上</title>
+    <link>http://www.szlx.me/tags/%E5%AE%89%E5%85%A8/</link>
+    <description>Recent content in 安全 on 在路上</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
+    <lastBuildDate>Sun, 12 Aug 2018 16:01:41 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.szlx.me/tags/%E5%AE%89%E5%85%A8/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>弄了个 RSA 小工具</title>
+      <link>http://www.szlx.me/post/rsa-%E5%B0%8F%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Sun, 12 Aug 2018 16:01:41 +0800</pubDate>
+      
+      <guid>http://www.szlx.me/post/rsa-%E5%B0%8F%E5%B7%A5%E5%85%B7/</guid>
+      <description>&lt;p&gt;&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;客户对项目进行安全检查的时候，忽然间提出了密码不能明文传输的要求。说实在的，在研发的过程中，还真的没有重视过这个问题，既然提出来了，那就得解决。既然要解决，那就不能随便忽悠，要严肃的解决。经过筛选，选择了相对完善，并且开发难度较低的方案：使用非对称加密算法，在浏览器端使用公钥对密码原文加密，并将加密后的密文传递到后来，后台收到密文后使用私钥进行解密得到密码原文，然后继续处理现有逻辑。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

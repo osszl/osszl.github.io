@@ -6,7 +6,9 @@
 
   
   <title>
-  Tags | 居闲亭
+  Tag → 安全
+  
+   | 居闲亭
 </title>
 
   
@@ -31,7 +33,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="居闲亭" />
   <meta property="og:description" content="居闲是个穷懒人" />
-  <meta property="og:url" content="http://www.szlx.me/categories/" />
+  <meta property="og:url" content="http://www.szlx.me/tags/%E5%AE%89%E5%85%A8/" />
   <meta property="og:image" content="http://www.szlx.me/img/avatar.jpg" />
 
 
@@ -40,7 +42,7 @@
 <meta name="generator" content="Hugo 0.44" />
 
 
-<link rel="canonical" href="http://www.szlx.me/categories/" />
+<link rel="canonical" href="http://www.szlx.me/tags/%E5%AE%89%E5%85%A8/" />
 <link rel="alternative" href="http://www.szlx.me/index.xml" title="在路上" type="application/atom+xml" />
 
 
@@ -222,23 +224,30 @@
   </nav>
 </header>
 
-  <section class="main post-detail terms-list">
-    <header class="post-header">
-      <h1 class="post-title">Categories</h1>
+  <section class="main post-list">
+    <header class="list-header offscreen">
+      <h2 class="list-label">Posts List</h2>
     </header>
-    <div class="tags-cloud">
+    
+    
       
+        <article class="post-entry">
+  <header class="post-header">
+    <h3 class="post-title"><a href="http://www.szlx.me/post/rsa-%E5%B0%8F%E5%B7%A5%E5%85%B7/" class="post-link">弄了个 RSA 小工具</a></h3>
+    <p class="post-meta">@居闲 · Aug 12, 2018 · 3 min read</p>
+  </header>
+  
+  <p class="post-summary">       客户对项目进行安全检查的时候，忽然间提出了密码不能明文传输的要求。说实在的，在研发的过程中，还真的没有重视过这个问题，既然提出来了，那就得解决。既然要解决，那就不能随便忽悠，要严肃的解决。经过筛选，选择了相对完善，并且开发难度较低的方案：使用非对称加密算法，在浏览器端使用公钥对密码原文加密，并将加密后的密文传递到后来，后台收到密文后使用私钥进行解密得到密码原文，然后继续处理现有逻辑。
+
+</p>
+  <footer class="post-footer">
+    <a class="read-more" href="http://www.szlx.me/post/rsa-%E5%B0%8F%E5%B7%A5%E5%85%B7/">Read More →</a>
+  </footer>
+</article>
+
       
-        
-        <a href="http://www.szlx.me/categories/%E7%A0%94%E5%8F%91/" class="tag-xxl">研发</a>
-      
-        
-        <a href="http://www.szlx.me/categories/%E9%9A%8F%E7%AC%94/" class="tag-xxl">随笔</a>
-      
-        
-        <a href="http://www.szlx.me/categories/%E7%AE%A1%E7%90%86/" class="tag-s">管理</a>
-      
-    </div>
+    
+    
   </section>
   <footer class="site-footer">
   <p>© 2017-2018 在路上</p>

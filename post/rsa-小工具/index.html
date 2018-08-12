@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>弄了个 RSA 小工具</title>
+
+  
+  
+
+
+
+
+
+  
+  <meta name="author" content="居闲" />
+  <meta name="description" content="&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;客户对项目进行安全检查的时候，忽然间提出了密码不能明文传输的要求。说实在的，在研发的过程中，还真的没有重视过这个问题，既然提出来了，那就得解决。既然要解决，那就不能随便忽悠，要严肃的解决。经过筛选，选择了相对完善，并且开发难度较低的方案：使用非对称加密算法，在浏览器端使用公钥对密码原文加密，并将加密后的密文传递到后来，后台收到密文后使用私钥进行解密得到密码原文，然后继续处理现有逻辑。
+
+" />
+
+  
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@gohugoio" />
+    <meta name="twitter:title" content="弄了个 RSA 小工具" />
+    <meta name="twitter:description" content="&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;客户对项目进行安全检查的时候，忽然间提出了密码不能明文传输的要求。说实在的，在研发的过程中，还真的没有重视过这个问题，既然提出来了，那就得解决。既然要解决，那就不能随便忽悠，要严肃的解决。经过筛选，选择了相对完善，并且开发难度较低的方案：使用非对称加密算法，在浏览器端使用公钥对密码原文加密，并将加密后的密文传递到后来，后台收到密文后使用私钥进行解密得到密码原文，然后继续处理现有逻辑。
+
+" />
+    <meta name="twitter:image" content="http://www.szlx.me/img/avatar.jpg" />
+  
+
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="弄了个 RSA 小工具" />
+  <meta property="og:description" content="&amp;#160; &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;客户对项目进行安全检查的时候，忽然间提出了密码不能明文传输的要求。说实在的，在研发的过程中，还真的没有重视过这个问题，既然提出来了，那就得解决。既然要解决，那就不能随便忽悠，要严肃的解决。经过筛选，选择了相对完善，并且开发难度较低的方案：使用非对称加密算法，在浏览器端使用公钥对密码原文加密，并将加密后的密文传递到后来，后台收到密文后使用私钥进行解密得到密码原文，然后继续处理现有逻辑。
+
+" />
+  <meta property="og:url" content="http://www.szlx.me/post/rsa-%E5%B0%8F%E5%B7%A5%E5%85%B7/" />
+  <meta property="og:image" content="http://www.szlx.me/img/avatar.jpg" />
+
+
+
+
+<meta name="generator" content="Hugo 0.44" />
+
+
+<link rel="canonical" href="http://www.szlx.me/post/rsa-%E5%B0%8F%E5%B7%A5%E5%85%B7/" />
+<link rel="alternative" href="http://www.szlx.me/index.xml" title="在路上" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+
+
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="在路上" />
+<meta name="msapplication-tooltip" content="在路上" />
+<meta name='msapplication-navbutton-color' content="#5fbf5e" />
+<meta name="msapplication-TileColor" content="#5fbf5e" />
+<meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
+<link rel="icon" href="http://www.szlx.me/img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="http://www.szlx.me/img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="http://www.szlx.me/img/favicon-32x32.png" />
+<link rel="icon" sizes="192x192" href="http://www.szlx.me/img/touch-icon-android.png" />
+<link rel="apple-touch-icon" href="http://www.szlx.me/img/touch-icon-apple.png" />
+<link rel="mask-icon" href="http://www.szlx.me/img/safari-pinned-tab.svg" color="#5fbf5e" />
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
+
+<link rel="stylesheet" href="http://www.szlx.me/css/bundle.ff02473a9a.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+      
+        
+        <a title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="http://www.szlx.me/img/avatar.jpg" alt="Avatar">
+  
+  <h2 class="title">在路上</h2>
+  
+  <p class="subtitle">这里也有诗，但那里还有星辰与大海</p>
+  <button class="menu-toggle" type="button">
+    <span class="icon icon-menu"></span>
+  </button>
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+            
+            
+            
+              is-active
+            ">
+            <a href="http://www.szlx.me/">首页</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="https://gitee.com/lxrj/validation">作品</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="http://www.szlx.me/tags/">标签</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="http://www.szlx.me/links/">友链</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="http://www.szlx.me/about/">关于</a>
+          </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list">
+
+      
+      <li class="social-item">
+        <a href="mailto:lxrjszl@qq.com" title="Email"><span class="icon icon-email"></span></a>
+      </li>
+
+      
+      <li class="social-item">
+        <a href="//github.com/lxrjszl@qq.com" title="GitHub"><span class="icon icon-github"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="http://www.szlx.me/img/qrcode.jpg" title="Wechat"><span class="icon icon-wechat"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="http://www.szlx.me/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+      </li>
+
+    </ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">弄了个 RSA 小工具</h1>
+      <p class="post-meta">@居闲 · Aug 12, 2018 · 3 min read</p>
+    </header>
+    <article class="post-content"><p>&#160; &#160;&#160;&#160;&#160;&#160;客户对项目进行安全检查的时候，忽然间提出了密码不能明文传输的要求。说实在的，在研发的过程中，还真的没有重视过这个问题，既然提出来了，那就得解决。既然要解决，那就不能随便忽悠，要严肃的解决。经过筛选，选择了相对完善，并且开发难度较低的方案：使用非对称加密算法，在浏览器端使用公钥对密码原文加密，并将加密后的密文传递到后来，后台收到密文后使用私钥进行解密得到密码原文，然后继续处理现有逻辑。</p>
+
+<p></p>
+
+<p>&#160; &#160;&#160;&#160;&#160;&#160;后端常见加解密的工具比较丰富，前端浏览器中使用的相对较少，百度了一般，很容易就发现了<a href="https://github.com/openstack/xstatic-jsencrypt/blob/master/xstatic/pkg/jsencrypt/data/jsencrypt.js">jsencrypt.js</a>,并且使用非常简单：</p>
+
+<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">1</span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">encrypt</span><span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> <span style="color:#a6e22e">JSEncrypt</span>();
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">2</span><span style="color:#a6e22e">encrypt</span>.<span style="color:#a6e22e">setPublicKey</span>(<span style="color:#e6db74">&#34;RSA的公钥&#34;</span>);
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">3</span><span style="color:#a6e22e">encrypt</span>.<span style="color:#a6e22e">encrypt</span>(<span style="color:#e6db74">&#34;密码原文&#34;</span>);
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">4</span></code></pre></div>
+&#160; &#160;&#160;&#160;&#160;&#160;前端工具选好后，算法也就定了，还好是常见的RSA，JDK天然携带。由于日常编程这方面的接触较少，相关API不是太熟悉，如是百度。几番折腾之后，发现实战的文章较多，描述系统，代码整洁的不多。于是决定还是别偷懒了，自己动手写个工具类。</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">  1</span><span style="color:#f92672">import</span> javax.crypto.Cipher<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">  2</span><span style="color:#f92672">import</span> java.nio.charset.Charset<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">  3</span><span style="color:#f92672">import</span> java.security.*<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">  4</span><span style="color:#f92672">import</span> java.security.interfaces.RSAKey<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">  5</span><span style="color:#f92672">import</span> java.security.spec.InvalidKeySpecException<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">  6</span><span style="color:#f92672">import</span> java.security.spec.PKCS8EncodedKeySpec<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">  7</span><span style="color:#f92672">import</span> java.security.spec.X509EncodedKeySpec<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">  8</span><span style="color:#f92672">import</span> java.util.ArrayList<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">  9</span><span style="color:#f92672">import</span> java.util.Base64<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 10</span><span style="color:#f92672">import</span> java.util.List<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 11</span><span style="color:#f92672">import</span> java.util.Objects<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 12</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 13</span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RSAHelper</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 14</span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> KeyFactory keyFactory<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 15</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 16</span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">RSAHelper</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 17</span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">keyFactory</span> <span style="color:#f92672">=</span> createDefaultKeyFactory<span style="color:#f92672">();</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 18</span>    <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 19</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 20</span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">RSAHelper</span><span style="color:#f92672">(</span>KeyFactory keyFactory<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 21</span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">keyFactory</span> <span style="color:#f92672">=</span> Objects<span style="color:#f92672">.</span><span style="color:#a6e22e">requireNonNull</span><span style="color:#f92672">(</span>keyFactory<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;密钥工厂不能为null&#34;</span><span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 22</span>    <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 23</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 24</span>    <span style="color:#66d9ef">public</span> PublicKey <span style="color:#a6e22e">loadPublicKey</span><span style="color:#f92672">(</span>String key<span style="color:#f92672">,</span> Charset charset<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 25</span>        <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> keyBytes <span style="color:#f92672">=</span> Base64<span style="color:#f92672">.</span><span style="color:#a6e22e">getDecoder</span><span style="color:#f92672">().</span><span style="color:#a6e22e">decode</span><span style="color:#f92672">(</span>key<span style="color:#f92672">.</span><span style="color:#a6e22e">getBytes</span><span style="color:#f92672">(</span>charset<span style="color:#f92672">));</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 26</span>        X509EncodedKeySpec x509EncodedKeySpec <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> X509EncodedKeySpec<span style="color:#f92672">(</span>keyBytes<span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 27</span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 28</span>            <span style="color:#66d9ef">return</span> keyFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">generatePublic</span><span style="color:#f92672">(</span>x509EncodedKeySpec<span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 29</span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InvalidKeySpecException ex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 30</span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> SecurityException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;公钥配置错误&#34;</span><span style="color:#f92672">,</span> ex<span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 31</span>        <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 32</span>    <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 33</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 34</span>    <span style="color:#66d9ef">public</span> PrivateKey <span style="color:#a6e22e">loadPrivateKey</span><span style="color:#f92672">(</span>String key<span style="color:#f92672">,</span> Charset charset<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 35</span>        <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> keyBytes <span style="color:#f92672">=</span> Base64<span style="color:#f92672">.</span><span style="color:#a6e22e">getDecoder</span><span style="color:#f92672">().</span><span style="color:#a6e22e">decode</span><span style="color:#f92672">(</span>key<span style="color:#f92672">.</span><span style="color:#a6e22e">getBytes</span><span style="color:#f92672">(</span>charset<span style="color:#f92672">));</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 36</span>        PKCS8EncodedKeySpec pkcs8EncodedKeySpec <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PKCS8EncodedKeySpec<span style="color:#f92672">(</span>keyBytes<span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 37</span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 38</span>            <span style="color:#66d9ef">return</span> keyFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">generatePrivate</span><span style="color:#f92672">(</span>pkcs8EncodedKeySpec<span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 39</span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InvalidKeySpecException ex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 40</span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> SecurityException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;私钥配置错误&#34;</span><span style="color:#f92672">,</span> ex<span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 41</span>        <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 42</span>    <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 43</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 44</span>    <span style="color:#66d9ef">public</span> KeyPair <span style="color:#a6e22e">generateKeyPair</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 45</span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 46</span>            KeyPairGenerator keyPairGenerator <span style="color:#f92672">=</span> KeyPairGenerator<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span>keyFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">getAlgorithm</span><span style="color:#f92672">());</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 47</span>            <span style="color:#66d9ef">return</span> keyPairGenerator<span style="color:#f92672">.</span><span style="color:#a6e22e">generateKeyPair</span><span style="color:#f92672">();</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 48</span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>NoSuchAlgorithmException ex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 49</span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> SecurityException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;算法不存在&#34;</span><span style="color:#f92672">,</span> ex<span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 50</span>        <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 51</span>    <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 52</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 53</span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getAlgorithm</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 54</span>        <span style="color:#66d9ef">return</span> keyFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">getAlgorithm</span><span style="color:#f92672">();</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 55</span>    <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 56</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 57</span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> <span style="color:#a6e22e">doRSA</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> mode<span style="color:#f92672">,</span> Key key<span style="color:#f92672">,</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> data<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 58</span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 59</span>            Cipher cipher <span style="color:#f92672">=</span> Cipher<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span>keyFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">getAlgorithm</span><span style="color:#f92672">());</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 60</span>            cipher<span style="color:#f92672">.</span><span style="color:#a6e22e">init</span><span style="color:#f92672">(</span>mode<span style="color:#f92672">,</span> key<span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 61</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 62</span>            RSAKey rsaKey <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>RSAKey<span style="color:#f92672">)</span> key<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 63</span>            <span style="color:#66d9ef">int</span> modulusByteLength <span style="color:#f92672">=</span> rsaKey<span style="color:#f92672">.</span><span style="color:#a6e22e">getModulus</span><span style="color:#f92672">().</span><span style="color:#a6e22e">bitLength</span><span style="color:#f92672">()</span> <span style="color:#f92672">/</span> 8<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 64</span>            List<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">byte</span><span style="color:#f92672">[]&gt;</span> byteList <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 65</span>            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> part <span style="color:#f92672">:</span> split<span style="color:#f92672">(</span>data<span style="color:#f92672">,</span> modulusByteLength<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 66</span>                <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> finalPart <span style="color:#f92672">=</span> cipher<span style="color:#f92672">.</span><span style="color:#a6e22e">doFinal</span><span style="color:#f92672">(</span>part<span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 67</span>                byteList<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>finalPart<span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 68</span>            <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 69</span>            <span style="color:#66d9ef">return</span> concat<span style="color:#f92672">(</span>byteList<span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 70</span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>GeneralSecurityException ex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 71</span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> SecurityException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;密文处理错误&#34;</span><span style="color:#f92672">,</span> ex<span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 72</span>        <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 73</span>    <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 74</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 75</span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> <span style="color:#a6e22e">concat</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">byte</span><span style="color:#f92672">[]&gt;</span> bytes<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 76</span>        <span style="color:#66d9ef">int</span> totalLength <span style="color:#f92672">=</span> bytes<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>arr <span style="color:#f92672">-&gt;</span> arr<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">).</span><span style="color:#a6e22e">reduce</span><span style="color:#f92672">((</span>l1<span style="color:#f92672">,</span> l2<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> l1 <span style="color:#f92672">+</span> l2<span style="color:#f92672">).</span><span style="color:#a6e22e">get</span><span style="color:#f92672">();</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 77</span>        <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> result <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[</span>totalLength<span style="color:#f92672">];</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 78</span>        <span style="color:#66d9ef">int</span> coyiedLength <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 79</span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> part <span style="color:#f92672">:</span> bytes<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 80</span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">arraycopy</span><span style="color:#f92672">(</span>part<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> result<span style="color:#f92672">,</span> coyiedLength<span style="color:#f92672">,</span> part<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 81</span>            coyiedLength <span style="color:#f92672">=</span> coyiedLength <span style="color:#f92672">+</span> part<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 82</span>        <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 83</span>        <span style="color:#66d9ef">return</span> result<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 84</span>    <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 85</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 86</span>    <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">byte</span><span style="color:#f92672">[]&gt;</span> <span style="color:#a6e22e">split</span><span style="color:#f92672">(</span><span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> bytes<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> groupSize<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 87</span>        <span style="color:#66d9ef">int</span> lastGroupLength <span style="color:#f92672">=</span> bytes<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">%</span> groupSize<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 88</span>        <span style="color:#66d9ef">int</span> groupCount <span style="color:#f92672">=</span> bytes<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">/</span> groupSize <span style="color:#f92672">+</span> <span style="color:#f92672">(</span>lastGroupLength <span style="color:#f92672">!=</span> 0 <span style="color:#f92672">?</span> 1 <span style="color:#f92672">:</span> 0<span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 89</span>        List<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">byte</span><span style="color:#f92672">[]&gt;</span> result <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 90</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 91</span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> ii <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> ii <span style="color:#f92672">&lt;</span> groupCount<span style="color:#f92672">;</span> ii<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 92</span>            <span style="color:#66d9ef">int</span> copyLength <span style="color:#f92672">=</span> <span style="color:#f92672">((</span>ii <span style="color:#f92672">==</span> groupCount <span style="color:#f92672">-</span> 1<span style="color:#f92672">)</span> <span style="color:#f92672">&amp;&amp;</span> lastGroupLength <span style="color:#f92672">!=</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">?</span> lastGroupLength <span style="color:#f92672">:</span> groupSize<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 93</span>            <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> array <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[</span>copyLength<span style="color:#f92672">];</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 94</span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">arraycopy</span><span style="color:#f92672">(</span>bytes<span style="color:#f92672">,</span> ii <span style="color:#f92672">*</span> groupSize<span style="color:#f92672">,</span> array<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> copyLength<span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 95</span>            result<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>ii<span style="color:#f92672">,</span> array<span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 96</span>        <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 97</span>        <span style="color:#66d9ef">return</span> result<span style="color:#f92672">;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 98</span>    <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 99</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">100</span>    <span style="color:#66d9ef">private</span> KeyFactory <span style="color:#a6e22e">createDefaultKeyFactory</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">101</span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">102</span>            <span style="color:#66d9ef">return</span> KeyFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;RSA&#34;</span><span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">103</span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>NoSuchAlgorithmException ex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">104</span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> SecurityException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;算法不存在&#34;</span><span style="color:#f92672">,</span> ex<span style="color:#f92672">);</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">105</span>        <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">106</span>    <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">107</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">108</span><span style="color:#f92672">}</span></code></pre></div>
+
+<h3 id="最后介绍rsa算法步骤">最后介绍RSA算法步骤：</h3>
+
+<ol>
+<li>随意选择两个大的质数p和q，p不等于q，计算N=pq。</li>
+<li>根据欧拉函数，不大于N且与N互质的整数個数為(p-1)(q-1)。</li>
+<li>选择一个整数e与(p-1)(q-1)互质，并且e小于(p-1)(q-1)。</li>
+<li>用以下这个公式计算d：d× e ≡ 1 (mod (p-1)(q-1))。</li>
+<li>将p和q的记录销毁。</li>
+<li>(N,e)是公钥，(N,d)是私钥。</li>
+</ol></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="http://www.szlx.me/tags/%E5%AE%89%E5%85%A8"><span class="tag">安全</span></a></li>
+        
+          <li><a href="http://www.szlx.me/tags/java"><span class="tag">Java</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "disqus_shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  <footer class="site-footer">
+  <p>© 2017-2018 在路上</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank">Nuo</a>.</p>
+  
+</footer>
+
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+<script src="http://www.szlx.me/js/bundle.d1288006cf.js"></script>
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+  </body>
+</html>
