@@ -243,13 +243,13 @@
 
 <p></p>
 
-<p>&#160; &#160;&#160;&#160;&#160;&#160;后端常见加解密的工具比较丰富，前端浏览器中使用的相对较少，百度了一般，很容易就发现了<a href="https://github.com/openstack/xstatic-jsencrypt/blob/master/xstatic/pkg/jsencrypt/data/jsencrypt.js">jsencrypt.js</a>,并且使用非常简单：</p>
+<p>&#160; &#160;&#160;&#160;&#160;&#160;后端常见加解密的工具比较丰富，前端浏览器中使用的相对较少，百度了一番，很容易就发现了<a href="https://github.com/openstack/xstatic-jsencrypt/blob/master/xstatic/pkg/jsencrypt/data/jsencrypt.js">jsencrypt.js</a>,并且使用非常简单：</p>
 
 <p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">1</span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">encrypt</span><span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> <span style="color:#a6e22e">JSEncrypt</span>();
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">2</span><span style="color:#a6e22e">encrypt</span>.<span style="color:#a6e22e">setPublicKey</span>(<span style="color:#e6db74">&#34;RSA的公钥&#34;</span>);
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">3</span><span style="color:#a6e22e">encrypt</span>.<span style="color:#a6e22e">encrypt</span>(<span style="color:#e6db74">&#34;密码原文&#34;</span>);
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">4</span></code></pre></div>
-&#160; &#160;&#160;&#160;&#160;&#160;前端工具选好后，算法也就定了，还好是常见的RSA，JDK天然携带。由于日常编程这方面的接触较少，相关API不是太熟悉，如是百度。几番折腾之后，发现实战的文章较多，描述系统，代码整洁的不多。于是决定还是别偷懒了，自己动手写个工具类。</p>
+&#160; &#160;&#160;&#160;&#160;&#160;前端工具选好后，算法也就定了，还好是常见的RSA，JDK天然携带。由于日常编程这方面的接触较少，相关API不是太熟悉，于是百度。几番折腾之后，发现实战的文章较多，描述系统且代码整洁的不多。只能放弃偷懒的想法，动手写了个工具类。</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">  1</span><span style="color:#f92672">import</span> javax.crypto.Cipher<span style="color:#f92672">;</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">  2</span><span style="color:#f92672">import</span> java.nio.charset.Charset<span style="color:#f92672">;</span>
